@@ -71,7 +71,7 @@ function calculate_score(totals) {
     };
 }
 
-let active_cards = [];
+let active_cards = {};
 
 function converter_to_totals(data, upgraded) {
     let outputs = upgraded ? data.upgrade_output : data.output;
@@ -134,11 +134,25 @@ function isEmptyObject(obj) {
 
 function format_resources(res) {
     let output = '';
+    const names = {
+        white: 'White',
+        green: 'Green',
+        brown: 'Brown',
+        wsmall: 'Wild Small',
+        asmall: 'Any Small',
+        yellow: 'Yellow',
+        blue: 'Blue',
+        black: 'Black',
+        wlarge: 'Wild Large',
+        alarge: 'Any Large',
+        ultratech: 'Ultratech',
+        vp: 'VP',
+        ships: 'Ships',
+    };
 
     if(!isEmptyObject(res.owned)) {
         output += Object.entries(res.owned).map(([key, value]) => {
-            let fmtted = key.charAt(0).toUpperCase() + key.slice(1);
-            return `${value} ${fmtted}`;
+            return `${value} ${names[key]}`;
         }).join(', ');
     }
 
@@ -148,7 +162,7 @@ function format_resources(res) {
         }
         output += Object.entries(res.donations).map(([key, value]) => {
             let fmtted = key.charAt(0).toUpperCase() + key.slice(1);
-            return `${value} ${fmtted}`;
+            return `${value} ${names[key]}`;
         }).join(', ');
 
         output += ' as donations';
@@ -218,19 +232,19 @@ function create_faction_converters() {
     card_container.innerHTML = ''; 
     if(data[curr_faction].tech_cards) {
         let i = 0;
-        for(let card_data of data[curr_faction].tech_cards) {
+        for(let [id, card_data] of Object.entries(data[curr_faction].tech_cards)) {
             let card_element = document.createElement('div');
             card_element.className = 'card';
-            card_element.innerHTML = card(i, card_data.name, card_data.input, card_data.output);
-            card_element.id = `card-${i}`;
+            card_element.innerHTML = card(id, card_data.name, card_data.input, card_data.output);
+            card_element.id = `card-${id}`;
             card_container.appendChild(card_element);
             
-            let upgrade_button = document.getElementById(`upgrade-${i}`);
-            upgrade_button.onclick = toggle_upgrade.bind(null, i);
-            let toggle_button = document.getElementById(`toggle-${i}`);
-            toggle_button.onclick = toggle_card.bind(null, i);
+            let upgrade_button = document.getElementById(`upgrade-${id}`);
+            upgrade_button.onclick = toggle_upgrade.bind(null, id);
+            let toggle_button = document.getElementById(`toggle-${id}`);
+            toggle_button.onclick = toggle_card.bind(null, id);
 
-            active_cards[i] = {
+            active_cards[id] = {
                 data: card_data,
                 upgraded: false,
                 running: false

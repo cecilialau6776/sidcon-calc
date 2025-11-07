@@ -96,7 +96,7 @@
         "3td": ["Temporal Dilation", "Stasis Field", "4C"],
         "3xc": ["Xeno Cultural Exchange", "Multispecies Hybrid Cultures", "5b"]
     },
-    "races": {
+    "species": {
         "caylion": {
             "upgrade-inputs": {},
             "outputs": {
