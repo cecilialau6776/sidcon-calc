@@ -1,16 +1,275 @@
 {
+    "$schema": "./factions_schema.json",
     "factions": [
         {
             "name": "Caylion Plutocracy",
-            "id": "base-caylion"
+            "id": "base-caylion",
+            "unique-cards": [
+                {
+                    "name": "Distributed Telenet",
+                    "upgrade-name": "Ansible Driven Intersystem Society",
+                    "converters": [
+                        {
+                            "inputs": "1K",
+                            "outputs": [ "1b1w", "1C" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1j2C",
+                            "outputs": "1V1Y"
+                        }
+                    ]
+                },
+                {
+                    "name": "Lunar Mining Consortium",
+                    "upgrade-name": "Auxonic Outersystem Harvesting",
+                    "converters": [
+                        {
+                            "inputs": "2C",
+                            "outputs": [ "2s1K1w", "1Y" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1j2K",
+                            "outputs": "1V1Y"
+                        }
+                    ]
+                },
+                {
+                    "name": "Oceanic Processing",
+                    "upgrade-name": "Planetwide Industrial Mariculture",
+                    "converters": [
+                        {
+                            "inputs": "2g",
+                            "outputs": [ "1C1b", "1K" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1j2K",
+                            "outputs": "1V1Y"
+                        }
+                    ]
+                },
+                {
+                    "name": "Planetary Ecological Dominance",
+                    "upgrade-name": "Systemwide Gravitic Dominance",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": [ "1s3g1w", "1C" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1j2C",
+                            "outputs": "1V1Y"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Caylion Collaborative",
-            "id": "alt-caylion"
+            "id": "alt-caylion",
+            "unique-cards": [
+                {
+                    "name": "Antigravity Exports",
+                    "upgrade-name": "Personal Gravity Manipulation",
+                    "converters": [
+                        {
+                            "inputs": "2g",
+                            "outputs": [ "1K1Y1b", "1w1b" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1j2C",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Diplomatic Enclave",
+                    "upgrade-name": "Interspecies Parliment",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": [ "1s1C1w", "1w1g" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1j2K",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Ocean Leasing",
+                    "upgrade-name": "Alient Oceanic Settling",
+                    "converters": [
+                        {
+                            "inputs": "1C",
+                            "outputs": [ "1Y1g", "1K" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1j1K",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Orbital Manufacturing",
+                    "upgrade-name": "Interplanetary Mining Partnership",
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": [ "2s2b1w", "1Y" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1j1C",
+                            "outputs": "1V"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Eni Et Ascendancy",
-            "id": "base-eniet"
+            "id": "base-eniet",
+            "unique-cards": [
+                {
+                    "name": "Bone Carving",
+                    "upgrade-name": "Nanocraft",
+                    "converters": [
+                        {
+                            "inputs": "2C",
+                            "outputs": [ "2w1b1g", "1w" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o2C",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Choral Song",
+                    "upgrade-name": "Eternal Music",
+                    "converters": [
+                        {
+                            "inputs": "5w",
+                            "outputs": [ "2s1U1K1g", "1Y" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o2C",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Cultural Charity",
+                    "upgrade-name": "Omnicultural Dynamic Charity",
+                    "converters": [
+                        {
+                            "inputs": "8a",
+                            "outputs": [ "13a", "3V-6a" ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Deep Hunting",
+                    "upgrade-name": "Pelagic Bounty",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": [ "1s1C", "1w" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o2C",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Elder's Wisdom",
+                    "upgrade-name": "Immortal's Wisdom",
+                    "converters": [
+                        {
+                            "inputs": "6A",
+                            "outputs": [ "10A", "2V-3A"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Intercultural Archive",
+                    "upgrade-name": "Ubiquitous Cultrual Influence",
+                    "converters": [
+                        {
+                            "inputs": "3A",
+                            "outputs": [ "4A", "1V-1A" ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Mutual Understanding",
+                    "upgrade-name": "Interspecies Empathy",
+                    "converters": [
+                        {
+                            "inputs": "2a",
+                            "outputs": [ "4a", "1V-1a" ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Universal Applied Metaethics",
+                    "upgrade-name": "Omnispecies Metaethical Models",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": [ "1VD3w", "D1g1b" ]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o2C",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Volunteer Medical Movement",
+                    "upgrade-name": "Universal Health",
+                    "converters": [
+                        {
+                            "inputs": "6a",
+                            "outputs": [ "9a", "2V-4a" ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Xenotech Pool",
+                    "upgrade-name": "Ultratech Community",
+                    "converters": [
+                        {
+                            "inputs": "3U",
+                            "outputs": [ "5U", "3V-2U" ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Eni Et Engineers",
