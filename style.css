@@ -45,6 +45,7 @@
 
 img.converter-arrow {
     height: 1.5em;
+    padding-left: 6px;
 }
 
 .converter-display,.resource {
