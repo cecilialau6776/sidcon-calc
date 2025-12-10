@@ -10,9 +10,15 @@ const vips = document.getElementById("vp-input");
 const score_text = document.getElementById("score");
 const faction_select = document.getElementById("faction-select");
 const card_container = document.getElementById("card-container");
-const smalls_ele = document.getElementById("nt-smalls");
-const larges_ele = document.getElementById("nt-larges");
-const other_ele = document.getElementById("nt-other");
+const gain_smalls = document.getElementById("gn-smalls");
+const gain_larges = document.getElementById("gn-larges");
+const gain_other = document.getElementById("gn-other");
+const net_smalls = document.getElementById("nt-smalls");
+const net_larges = document.getElementById("nt-larges");
+const net_other = document.getElementById("nt-other");
+const net_gain_toggle = document.getElementById("net-gain-toggle");
+const net_holder = document.getElementById("nt-net-holder");
+const gain_holder = document.getElementById("nt-gain-holder");
 let data;
 
 async function getData() {
@@ -56,6 +62,20 @@ function add_totals(t1, t2) {
     };
 }
 
+function sub_totals(t1, t2) {
+    return {
+        white: (t1.white ? t1.white : 0) - (t2.white ? t2.white : 0),
+        brown: (t1.brown ? t1.brown : 0) - (t2.brown ? t2.brown : 0),
+        green: (t1.green ? t1.green : 0) - (t2.green ? t2.green : 0),
+        black: (t1.black ? t1.black : 0) - (t2.black ? t2.black : 0),
+        yellow: (t1.yellow ? t1.yellow : 0) - (t2.yellow ? t2.yellow : 0),
+        blue: (t1.blue ? t1.blue : 0) - (t2.blue ? t2.blue : 0),
+        ultratech: (t1.ultratech ? t1.ultratech : 0) - (t2.ultratech ? t2.ultratech : 0),
+        ships: (t1.ships ? t1.ships : 0) - (t2.ships ? t2.ships : 0),
+        vp: (t1.vp ? t1.vp : 0) - (t2.vp ? t2.vp : 0)
+    };
+}
+
 function calculate_score(totals) {
     let smalls = totals.white + totals.brown + totals.green + totals.ships;
     let larges = totals.black + totals.blue + totals.yellow;
@@ -78,11 +98,26 @@ function converter_to_totals(data, upgraded) {
     return add_totals(outputs.owned, outputs.donations);
 }
 
+function converter_inputs_to_totals(data, upgraded) {
+    let inputs = upgraded ? data.upgrade_input : data.input;
+    return add_totals(inputs.owned, inputs.donations);
+}
+
 function generate_card_totals() {
     let totals = {}
     for (let card of Object.values(active_cards)) {
         if (card.running) {
             totals = add_totals(totals, converter_to_totals(card.data, card.upgraded));
+        }
+    }
+    return totals;
+}
+
+function count_card_inputs() {
+    let totals = {};
+    for (let card of Object.values(active_cards)) {
+        if(card.running) {
+            totals = add_totals(totals, converter_inputs_to_totals(card.data, card.upgraded));
         }
     }
     return totals;
@@ -100,6 +135,8 @@ function format_other(total) {
     return `${total.ultratech ?? 0} ultratech, ${total.ships ?? 0} ships, ${total.vp ?? 0} vp`;
 }
 
+let calc_net = false;
+
 function update_score() {
     let rotting = generate_rotting_totals();
     let cards = generate_card_totals();
@@ -108,9 +145,17 @@ function update_score() {
     let score = calculate_score(total);
 
     score_text.innerText = ` ${score.vp} + ${score.partial}/12`;
-    smalls_ele.innerText = format_smalls(total);
-    larges_ele.innerText = format_larges(total);
-    other_ele.innerText = format_other(total);
+
+    gain_smalls.innerText = format_smalls(total);
+    gain_larges.innerText = format_larges(total);
+    gain_other.innerText = format_other(total);
+
+    let inputs = count_card_inputs();
+    let net = sub_totals(total, inputs);
+
+    net_smalls.innerText = format_smalls(net);
+    net_larges.innerText = format_larges(net);
+    net_other.innerText = format_other(net);
 }
 
 function create_faction_options() {
@@ -255,6 +300,19 @@ function create_faction_converters() {
     }
 }
 
+function toggle_net() {
+    if(calc_net) {
+        net_holder.hidden = true;
+        gain_holder.hidden = false;
+        net_gain_toggle.innerText = "Calculate Net Resources";
+    } else {
+        net_holder.hidden = false;
+        gain_holder.hidden = true;
+        net_gain_toggle.innerText = "Calculate Resource Counts";
+    }
+    calc_net = !calc_net;
+}
+
 function main() {
     white.oninput = update_score;
     brown.oninput = update_score;
@@ -268,5 +326,6 @@ function main() {
     create_faction_options();
     faction_select.oninput = create_faction_converters;
     create_faction_converters();
+    net_gain_toggle.onclick = toggle_net;
     update_score();
 }

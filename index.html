@@ -64,10 +64,19 @@
                 </div>
                 <div class="input-row">
                     <div class="cube-input-holder">
-                        <span>Next Turn Resources:</span>
-                        <span id="nt-smalls"></span>
-                        <span id="nt-larges"></span>
-                        <span id="nt-other"></span>
+                        <div id="nt-gain-holder">
+                            <span>Next Turn Resources:</span>
+                            <span id="gn-smalls"></span>
+                            <span id="gn-larges"></span>
+                            <span id="gn-other"></span>
+                        </div>
+                        <div id="nt-net-holder" hidden>
+                            <span>Resources to grab:</span>
+                            <span id="nt-smalls"></span>
+                            <span id="nt-larges"></span>
+                            <span id="nt-other"></span>
+                        </div>
+                        <button id="net-gain-toggle">Calculate Net Resources</button>
                     </div>
                 </div>
             </div>
