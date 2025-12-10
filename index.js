@@ -212,14 +212,6 @@ function isEmptyObject(obj) {
     return true;
 }
 
-function format_resources(res, use_icons) {
-    if (use_icons) {
-        return format_resources_icons(res);
-    } else {
-        return format_resources_text(res);
-    }
-}
-
 function format_resources_icons(res) {
     let output = "";
     if (!isEmptyObject(res.owned)) {
