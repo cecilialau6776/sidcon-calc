@@ -21,6 +21,41 @@ const net_holder = document.getElementById("nt-net-holder");
 const gain_holder = document.getElementById("nt-gain-holder");
 let data;
 
+const WHITE_ARROW_IMG = '<img class="converter-arrow" src="assets/icons/white_arrow.png" alt="arrow" />';
+
+const USE_ICONS = true;
+
+const FILENAMES = {
+    white: "white.png",
+    green: "green.png",
+    brown: "brown.png",
+    wsmall: "small_grey.png",
+    asmall: "small_any.png",
+    yellow: "yellow.png",
+    blue: "blue.png",
+    black: "black.png",
+    wlarge: "large_grey.png",
+    alarge: "large_any.png",
+    ultratech: "ultratech.png",
+    vp: "victory_point.png",
+    ships: "ship.png",
+};
+const CLASSNAMES = {
+    white: "small-cube",
+    green: "small-cube",
+    brown: "small-cube",
+    wsmall: "small-cube",
+    asmall: "small-cube",
+    yellow: "large-cube",
+    blue: "large-cube",
+    black: "large-cube",
+    wlarge: "large-cube",
+    alarge: "large-cube",
+    ultratech: "large-cube",
+    vp: "victory-point",
+    ships: "ship",
+};
+
 async function getData() {
     let output = await fetch('./output.json');
     data = await output.json();
@@ -116,7 +151,7 @@ function generate_card_totals() {
 function count_card_inputs() {
     let totals = {};
     for (let card of Object.values(active_cards)) {
-        if(card.running) {
+        if (card.running) {
             totals = add_totals(totals, converter_inputs_to_totals(card.data, card.upgraded));
         }
     }
@@ -177,7 +212,48 @@ function isEmptyObject(obj) {
     return true;
 }
 
-function format_resources(res) {
+function format_resources_icons(res) {
+    let output = "";
+    if (!isEmptyObject(res.owned)) {
+        output += Object.entries(res.owned).map((resource) => { return resource_icon(resource, false) }).join("");
+    }
+
+    if (!isEmptyObject(res.donations)) {
+        output += Object.entries(res.donations).map((resource) => { return resource_icon(resource, true) }).join("");
+    }
+
+    return output;
+}
+
+function resource_icon(res, is_donation) {
+    [resource_name, count] = res
+    const classname = CLASSNAMES[resource_name];
+    const filename = "assets/icons/" + FILENAMES[resource_name];
+    const count_display = count > 1 ? count : "";
+    const donation_border = is_donation ? `<img class="centered donation ${classname}" src="${get_donation_border_filename(resource_name)}" />` : "";
+    return `
+            <div class="resource ${classname}">
+                ${donation_border}
+                <img class="centered ${classname}" src="${filename}" alt="${format_resources_text(res)}" />
+                <span class="centered">${count_display}</span>
+            </div>`; // whitespace here must be missing for correct arrow formatting
+}
+
+function get_donation_border_filename(resource_name) {
+    let filename;
+    if (resource_name === "ultratech") {
+        filename = "ultratech_donation_border.png";
+    } else if (resource_name === "vp") {
+        filename = "vp_donation_border.png";
+    } else if (resource_name === "ships") {
+        filename = "ship_donation_border.png";
+    } else {
+        filename = "cube_donation_border.png";
+    }
+    return "assets/icons/" + filename;
+}
+
+function format_resources_text(res) {
     let output = '';
     const names = {
         white: 'White',
@@ -217,22 +293,31 @@ function format_resources(res) {
 }
 
 function converter(input, output) {
-    return `
-        <span class="converter-inputs">${format_resources(input)}</span>
-        <span class="converter-arrow">→</span>
-        <span class="converter-outputs">${format_resources(output)}</span>
-    `;
+    if (USE_ICONS) {
+        return `
+            <span class="converter-inputs">${format_resources_icons(input)}${WHITE_ARROW_IMG}</span>
+            <span class="converter-outputs">${format_resources_icons(output)}</span>
+        `;
+    } else {
+        return `
+            <span class="converter-inputs">${format_resources_text(input)}</span>
+            <span class="converter-arrow">→</span>
+            <span class="converter-outputs">${format_resources_text(output)}</span>
+        `;
+    }
 }
 
 function card(id, name, input, output) {
     return `
-        <div class="converter" id="card-${id}">
-            <span class="converter-name" id="card-name-${id}">${name}</span>
-            <button id="upgrade-${id}">Upgrade</button>
+        <div class="container converter" id="card-${id}">
+            <div class="container">
+                <span class="converter-name" id="card-name-${id}">${name}</span>
+                <button id="upgrade-${id}">Upgrade</button>
+                <button id="toggle-${id}">Mark Running</button>
+            </div>
             <div class="converter-display" id="converter-${id}">
                 ${converter(input, output)}
             </div>
-            <button id="toggle-${id}">Mark Running</button>
         </div>
     `;
 }
@@ -301,7 +386,7 @@ function create_faction_converters() {
 }
 
 function toggle_net() {
-    if(calc_net) {
+    if (calc_net) {
         net_holder.hidden = true;
         gain_holder.hidden = false;
         net_gain_toggle.innerText = "Calculate Net Resources";
