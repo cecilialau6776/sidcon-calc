@@ -1,3 +1,8 @@
+@font-face {
+  font-family: evogria;
+  src: url("./assets/Evogria.otf") format("opentype");
+}
+
 .top-container {
     justify-content: center;
 }
@@ -25,13 +30,65 @@
 }
 
 .card {
+    color: white;
     border-style: solid;
-    border-color: black;
+    border-color: white;
     border-width: 3px;
     border-radius: 5px;
     margin: 3px;
+    background-color: #0d1721;
 }
 
 .running {
-    background-color: gainsboro
+    background-color: #1a2e42;
+}
+
+img.converter-arrow {
+    height: 1.5em;
+}
+
+.converter-display,.resource {
+    display: inline-block;
+}
+
+div.resource span.centered {
+    color: black;
+    font-family: evogria;
+    font-size: 1.25em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; paint-order: stroke fill;
+    -webkit-text-stroke: .1em white;
+}
+
+.resource img.donation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* div.small-cube,div.large-cube { */
+div.resource {
+    position: relative;
+}
+.large-cube {
+    height: 3em;
+}
+.small-cube,.ship,.victory-point {
+    height: 2.5em;
+}
+img.donation.large-cube {
+    height: calc(3em + 5px);
+}
+img.donation.small-cube {
+    height: calc(2.5em + 4px);
+}
+img.donation.victory-point {
+    height: calc(2.5em + 7px);
+}
+img.donation.ship {
+    height: calc(2.5em + 5px);
 }
