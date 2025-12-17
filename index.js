@@ -343,7 +343,6 @@ function toggle_upgrade(i) {
         update_score();
     }
 }
-
 function toggle_card(i) {
     let r_state = !active_cards[i].running;
     active_cards[i].running = r_state;
@@ -368,7 +367,6 @@ function create_faction_converters() {
             let card_element = document.createElement('div');
             card_element.className = 'col';
             card_element.innerHTML = card(id, card_data.name, card_data.input, card_data.output);
-            // card_element.id = `card-${id}`;
             card_container.appendChild(card_element);
 
             let upgrade_button = document.getElementById(`upgrade-${id}`);
@@ -385,7 +383,52 @@ function create_faction_converters() {
             i++;
         }
     }
+    // add an "add card" card at the end of the grid
+    let card_element = document.createElement('div');
+    card_element.setAttribute("data-bs-toggle", "modal")
+    card_element.setAttribute("data-bs-target", "#card_selector")
+    card_element.className = 'col';
+    card_element.innerHTML = `
+        <div class="col card" id="add-card">
+            <h2>+ Add Card</h2>
+        </div>
+    `;
+    card_container.appendChild(card_element);
 }
+
+/* Start card selector */
+window.addEventListener("DOMContentLoaded", (event) => {
+    const card_selector = document.getElementById('card_selector');
+    const modal_card_contianer = document.getElementById('modal_card_container');
+    card_selector.addEventListener('show.bs.modal', event => {
+        let id = "test-id";
+        let name = "chom";
+        let input = {owned:{yellow: 1}};
+        let output = {owned:{brown: 3}};
+        let card_element = document.createElement('div');
+        card_element.className = 'col';
+        card_element.innerHTML = `
+            <div class="col card converter text-center" id="card-${id}">
+                <div class="card-header">
+                    <span class="converter-name" id="card-name-${id}">${name}</span>
+                </div>
+                <div class="card-body converter-display" id="converter-${id}">
+                    ${converter(input, output)}
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-light float-end" id="select-${id}">Select</button>
+                </div>
+            </div>
+        `;
+        modal_card_container.appendChild(card_element);
+        
+    });
+
+    card_selector.addEventListener('hide.bs.modal', event => { modal_card_contianer.innerHTML = ''; })
+});
+
+/* End card selector */
+
 
 function toggle_net() {
     if (calc_net) {
