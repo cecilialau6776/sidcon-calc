@@ -9,80 +9,102 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="meta-holder">
-            <div>
-                Faction:
-                <select id="faction-select">
-                </select>
-            </div>
-            <div>
-                Current Turn:
-                <input id="turn-input" type="number" value=0 />
-            </div>
-            <div>
-                Player Count:
-                <input id="player-input" type="number" value=0 />
+        <br>
+        <div class="container mt-1 mb-1">
+            <form class="row">
+                <div class="col input-group">
+                    <label for="faction-select" class="input-group-text">Faction:</label>
+                    <select class="form-select" id="faction-select"></select>
+                </div>
+                <div class="col input-group">
+                    <label for="turn-input" class="input-group-text">Current Turn:</label>
+                    <input class="form-control" id="turn-input" type="number" value=1 min=1 max=6 />
+                </div>
+                <div class="col input-group">
+                    <label for="player-input" class="input-group-text">Player Count:</label>
+                    <input class="form-control" id="player-input" type="number" value=3 min=3 max=9  />
+                </div>
+            </form>
+        </div>
+
+        <hr>
+
+        <div class="container">
+            <div class="row row-cols-3" id="card-container">
             </div>
         </div>
-        <div class="card-container" id="card-container">
-        </div>
-        <div class="top-container">
-            <div class="cube-input-holder">
-                <div class="input-row">
-                    <div class="cube-input">
-                        White: <input id="white-input" type="number" value=0/>
+
+        <hr>
+
+        <div class="container">
+            <form>
+                <div class="row text-center">
+                    <h4>Current Resources</h4>
+                </div>
+                <div class="row">
+                    <div class="col input-group">
+                        <label for="white-input" class="input-group-text">White:</label>
+                        <input class="form-control" id="white-input" type="number" value=0 />
                     </div>
-                    <div class="cube-input">
-                        Brown: <input id="brown-input" type="number" value=0/>
+                    <div class="col input-group">
+                        <label for="brown-input" class="input-group-text">Brown:</label>
+                        <input class="form-control" id="brown-input" type="number" value=0 />
                     </div>
-                    <div class="cube-input">
-                        Green: <input id="green-input" type="number" value=0/>
+                    <div class="col input-group">
+                        <label for="green-input" class="input-group-text">Green:</label>
+                        <input class="form-control" id="green-input" type="number" value=0 />
                     </div>
                 </div>
-                <div class="input-row">
-                    <div class="cube-input">
-                        Black: <input id="black-input" type="number" value=0/>
+                <div class="row">
+                    <div class="col input-group">
+                        <label for="black-input" class="input-group-text">Black:</label>
+                        <input class="form-control" id="black-input" type="number" value=0 />
                     </div>
-                    <div class="cube-input">
-                        Blue: <input id="blue-input" type="number" value=0/>
+                    <div class="col input-group">
+                        <label for="blue-input" class="input-group-text">Blue:</label>
+                        <input class="form-control" id="blue-input" type="number" value=0 />
                     </div>
-                    <div class="cube-input">
-                        Yellow: <input id="yellow-input" type="number" value=0/>
-                    </div>
-                </div>
-                <div class="input-row">
-                    <div class="cube-input">
-                        Ultratech: <input id="ultratech-input" type="number" value=0/>
-                    </div>
-                    <div class="cube-input">
-                        Ships: <input id="ships-input" type="number" value=0/>
-                    </div>
-                    <div class="cube-input">
-                        VP: <input id="vp-input" type="number" value=0/>
+                    <div class="col input-group">
+                        <label for="yellow-input" class="input-group-text">Yellow:</label>
+                        <input class="form-control" id="yellow-input" type="number" value=0 />
                     </div>
                 </div>
-                <div class="input-row">
-                    Final Score:
-                    <span id="score"></span>
-                </div>
-                <div class="input-row">
-                    <div class="cube-input-holder">
-                        <div id="nt-gain-holder">
-                            <span>Next Turn Resources:</span>
-                            <span id="gn-smalls"></span>
-                            <span id="gn-larges"></span>
-                            <span id="gn-other"></span>
-                        </div>
-                        <div id="nt-net-holder" hidden>
-                            <span>Resources to grab:</span>
-                            <span id="nt-smalls"></span>
-                            <span id="nt-larges"></span>
-                            <span id="nt-other"></span>
-                        </div>
-                        <button id="net-gain-toggle">Calculate Net Resources</button>
+                <div class="row">
+                    <div class="col input-group">
+                        <label for="ultratech-input" class="input-group-text">Ultratech:</label>
+                        <input class="form-control" id="ultratech-input" type="number" value=0 />
+                    </div>
+                    <div class="col input-group">
+                        <label for="ships-input" class="input-group-text">Ships:</label>
+                        <input class="form-control" id="ships-input" type="number" value=0 />
+                    </div>
+                    <div class="col input-group">
+                        <label for="vp-input" class="input-group-text">VP:</label>
+                        <input class="form-control" id="vp-input" type="number" value=0 />
                     </div>
                 </div>
+                <br>
+                <div class="cube-input-holder">
+                    <div id="nt-gain-holder">
+                        <span>Next Turn Resources:</span>
+                        <span id="gn-smalls"></span>
+                        <span id="gn-larges"></span>
+                        <span id="gn-other"></span>
+                    </div>
+                    <div id="nt-net-holder" hidden>
+                        <span>Resources to grab:</span>
+                        <span id="nt-smalls"></span>
+                        <span id="nt-larges"></span>
+                        <span id="nt-other"></span>
+                    </div>
+                    <button class="btn btn-info" type="button" id="net-gain-toggle">Calculate Net Resources</button>
+                </div>
+            </form>
+            <br>
+            <div class="input-row">
+                <h5 id="score"></h5>
             </div>
+            <br>
         </div>
 
         <script src="index.js"></script>

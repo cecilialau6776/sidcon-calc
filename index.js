@@ -179,7 +179,7 @@ function update_score() {
 
     let score = calculate_score(total);
 
-    score_text.innerText = ` ${score.vp} + ${score.partial}/12`;
+    score_text.innerText = `Final Score: ${score.vp} + ${score.partial}/12`;
 
     gain_smalls.innerText = format_smalls(total);
     gain_larges.innerText = format_larges(total);
@@ -309,14 +309,16 @@ function converter(input, output) {
 
 function card(id, name, input, output) {
     return `
-        <div class="container converter" id="card-${id}">
-            <div class="container">
+        <div class="col card converter text-center" id="card-${id}">
+            <div class="card-header">
                 <span class="converter-name" id="card-name-${id}">${name}</span>
-                <button id="upgrade-${id}">Upgrade</button>
-                <button id="toggle-${id}">Mark Running</button>
             </div>
-            <div class="converter-display" id="converter-${id}">
+            <div class="card-body converter-display" id="converter-${id}">
                 ${converter(input, output)}
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-light float-start" id="toggle-${id}">Mark Running</button>
+                <button class="btn btn-light float-end" id="upgrade-${id}">Upgrade</button>
             </div>
         </div>
     `;
@@ -364,9 +366,9 @@ function create_faction_converters() {
         let i = 0;
         for (let [id, card_data] of Object.entries(data[curr_faction].tech_cards)) {
             let card_element = document.createElement('div');
-            card_element.className = 'card';
+            card_element.className = 'col';
             card_element.innerHTML = card(id, card_data.name, card_data.input, card_data.output);
-            card_element.id = `card-${id}`;
+            // card_element.id = `card-${id}`;
             card_container.appendChild(card_element);
 
             let upgrade_button = document.getElementById(`upgrade-${id}`);

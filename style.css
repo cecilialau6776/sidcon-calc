@@ -7,20 +7,10 @@
     justify-content: center;
 }
 
-.cube-input-holder {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .input-row {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-
-.cube-input {
-    flex-basis: 0;
 }
 
 .card-container {
@@ -50,6 +40,10 @@ img.converter-arrow {
 
 .converter-display,.resource {
     display: inline-block;
+}
+
+.converter-name {
+    font-family: evogria;
 }
 
 div.resource span.centered {
