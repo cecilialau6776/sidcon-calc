@@ -586,7 +586,61 @@
         },
         {
             "name": "Im'Dril Nomads",
-            "id": "base-imdril"
+            "id": "base-imdril",
+            "unique-cards": [
+                {
+                    "name": "Asteroid Mining",
+                    "upgrade-name": "Asteroid Construction Yards",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1s2b", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1Y",
+                            "outputs": ["", "1C1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2ap", "2hm"]
+                },
+                {
+                    "name": "Faderan Relic Caches",
+                    "upgrade-name": "Relic REsynthesis",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2U",
+                            "outputs": ["1K2Y2C2g1b1w", "1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1at", "1ci"]
+                },
+                {
+                    "name": "Galactic Exploration",
+                    "upgrade-name": "Galactic Windfall Cartography",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["1U1C2w1g", "1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["2aa", "2hm"]
+                },
+                {
+                    "name": "Microgravity Assembly",
+                    "upgrade-name": "Distributed Manufacturing",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "4b",
+                            "outputs": ["4s2Y1K1C", ""]
+                        }
+                    ],
+                    "upgrade-cards": ["1nt", "1qc"]
+                }
+            ]
         },
         {
             "name": "Im'Dril Grand Fleet",
