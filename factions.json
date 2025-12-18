@@ -453,13 +453,136 @@
                         }
                     ],
                     "upgrade-cards": ["2cs", "2is"]
+                }.
+                {
+                    "name": "Automated Transport Network",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1g", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "Library of Entelechy",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["D1V1K1g1w", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "Nalgorian Grindstone",
+                    "converters": [
+                        {
+                            "inputs": "1V",
+                            "outputs": ["1C1K1b1g", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "The Grand Armilla",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["4s", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "Thil's Demiring",
+                    "converters": [
+                        {
+                            "inputs": "1Y1K",
+                            "outputs": ["2V", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "Transmutive Decomposer",
+                    "converters": [
+                        {
+                            "inputs": "2s",
+                            "outputs": ["1U1Y1b1g", ""]
+                        }
+                    ]
                 }
-
             ]
         },
         {
             "name": "Society of Falling Light",
-            "id": "alt-faderan"
+            "id": "alt-faderan",
+            "unique-cards": [
+                {
+                    "name": "Diplomats",
+                    "upgrade-name": "Advisors",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "5w",
+                            "outputs": ["1s2K1C1Y", "2V"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i4K",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Im'dril Auxiliaries",
+                    "upgrade-name": "Client Species",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "4b",
+                            "outputs": ["1Y1C3s", "1C1V"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i3C",
+                            "outputs": "1s"
+                        }
+                    ]
+                },
+                {
+                    "name": "Memory Harvest",
+                    "upgrade-name": "Reckless Innovation",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "5g",
+                            "outputs": ["2w1b1s1U", "1K1V"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i3Y",
+                            "outputs": "1s"
+                        }
+                    ]
+                },
+                {
+                    "name": "Rim Gate Network",
+                    "upgrade-name": "Imperial Ambition",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1s2g1w1Y", "1U"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i2b1w1g",
+                            "outputs": ""
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Im'Dril Nomads",
