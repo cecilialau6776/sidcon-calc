@@ -698,7 +698,130 @@
         },
         {
             "name": "Kjasjavikalimm Directorate",
-            "id": "base-kjas"
+            "id": "base-kjas",
+            "unique-cards": [
+                {
+                    "name": "Perfume Pheromone Loyalty",
+                    "upgrade-name": "Multiconformal Pheromonics",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "4b",
+                            "outputs": ["1Y1K1C1w", "D1g1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ge", "1nt"]
+                },
+                {
+                    "name": "Starstrider Jumpcores",
+                    "upgrade-name": "Fastjump Network",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2C",
+                            "outputs": ["4s1g", "1s1V-1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2hm", "2sc"]
+                },
+                {
+                    "name": "Underground Cities",
+                    "upgrade-name": "Asteroid Mine Network",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["3s2b", "1C"]
+                        }
+                    ],
+                    "upgrade-cards": ["2oc", "2ap"]
+                },
+                {
+                    "name": "Balkanized State's Colonies",
+                    "upgrade-name": "Outer Reaches Hegemony",
+                    "converters": [
+                        {
+                            "inputs": "1g",
+                            "outputs": ["2sD1w", ""]
+                        },
+                        {
+                            "inputs": "1C",
+                            "outputs": ["1K1bD1w", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1V1YD1g1b1w"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "1d1i1b2Y",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1d1j1i2b",
+                            "outputs": "2V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Hadsja Vassal Territory",
+                    "upgrade-name": "Hadsja Empire",
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["1U1C1b1g", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgraded-inputs": "3Y",
+                            "outputs": ["", "1C1b2g2w2s"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "1d1j3Y",
+                            "outputs": "2V"
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1d1o1i2Y",
+                            "outputs": "3V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Vagnleg Suzerainty",
+                    "upgrade-name": "Vagnleg Dominion",
+                    "converters": [
+                        {
+                            "inputs": "2w",
+                            "outputs": ["1V1Y1b", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "4b",
+                            "outputs": ["", "1V1U1g1s"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "1d1o3Y",
+                            "outputs": "2Y"
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1d1j1i2Y",
+                            "outputs": "3V"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Kjasjavikalimm Independant Nations",
