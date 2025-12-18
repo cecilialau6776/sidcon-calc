@@ -8,6 +8,7 @@
                 {
                     "name": "Distributed Telenet",
                     "upgrade-name": "Ansible Driven Intersystem Society",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1K",
@@ -24,6 +25,7 @@
                 {
                     "name": "Lunar Mining Consortium",
                     "upgrade-name": "Auxonic Outersystem Harvesting",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2C",
@@ -40,6 +42,7 @@
                 {
                     "name": "Oceanic Processing",
                     "upgrade-name": "Planetwide Industrial Mariculture",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2g",
@@ -56,6 +59,7 @@
                 {
                     "name": "Planetary Ecological Dominance",
                     "upgrade-name": "Systemwide Gravitic Dominance",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -78,6 +82,7 @@
                 {
                     "name": "Antigravity Exports",
                     "upgrade-name": "Personal Gravity Manipulation",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2g",
@@ -94,6 +99,7 @@
                 {
                     "name": "Diplomatic Enclave",
                     "upgrade-name": "Interspecies Parliment",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -110,6 +116,7 @@
                 {
                     "name": "Ocean Leasing",
                     "upgrade-name": "Alient Oceanic Settling",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1C",
@@ -126,6 +133,7 @@
                 {
                     "name": "Orbital Manufacturing",
                     "upgrade-name": "Interplanetary Mining Partnership",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2K",
@@ -148,6 +156,7 @@
                 {
                     "name": "Bone Carving",
                     "upgrade-name": "Nanocraft",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2C",
@@ -164,6 +173,7 @@
                 {
                     "name": "Choral Song",
                     "upgrade-name": "Eternal Music",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "5w",
@@ -180,6 +190,7 @@
                 {
                     "name": "Cultural Charity",
                     "upgrade-name": "Omnicultural Dynamic Charity",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "8a",
@@ -190,6 +201,7 @@
                 {
                     "name": "Deep Hunting",
                     "upgrade-name": "Pelagic Bounty",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -206,6 +218,7 @@
                 {
                     "name": "Elder's Wisdom",
                     "upgrade-name": "Immortal's Wisdom",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "6A",
@@ -216,6 +229,7 @@
                 {
                     "name": "Intercultural Archive",
                     "upgrade-name": "Ubiquitous Cultrual Influence",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "3A",
@@ -226,6 +240,7 @@
                 {
                     "name": "Mutual Understanding",
                     "upgrade-name": "Interspecies Empathy",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2a",
@@ -236,6 +251,7 @@
                 {
                     "name": "Universal Applied Metaethics",
                     "upgrade-name": "Omnispecies Metaethical Models",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1U",
@@ -252,6 +268,7 @@
                 {
                     "name": "Volunteer Medical Movement",
                     "upgrade-name": "Universal Health",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "6a",
@@ -262,6 +279,7 @@
                 {
                     "name": "Xenotech Pool",
                     "upgrade-name": "Ultratech Community",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "3U",
@@ -273,11 +291,171 @@
         },
         {
             "name": "Eni Et Engineers",
-            "id": "alt-eniet"
+            "id": "alt-eniet",
+            "unique-cards": [
+                {
+                    "name": "Alien Efficency Studies",
+                    "upgrade-name": "Atomic Recycling",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1b1g", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1C1w1g1b"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o4w",
+                            "outputs": "1V"
+                        },
+                        {
+                            "inputs": "1i2U",
+                            "outputs": "3V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Ship Fabricator",
+                    "upgrade-name": "Orbital Moot",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": [ "2s1w", "1C"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o2w",
+                            "outputs": "1V"
+                        },
+                        {
+                            "inputs": "1j1U",
+                            "outputs": "2V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Educational Mythology",
+                    "upgrade-name": "Technological Apprenticeships",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2w",
+                            "outputs": ["1b", ""]
+                        },
+                        {
+                            "inputs": "2w",
+                            "outputs": ["1C1K", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "2w",
+                            "outputs": ["", "1U1Y"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o3C",
+                            "outputs": "1V"
+                        },
+                        {
+                            "inputs": "1d6w",
+                            "outputs": "3V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Hydroothermal Smelting",
+                    "upgrade-name": "Endless Refinement",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "1C",
+                            "outputs": ["2s", ""]
+                        },
+                        {
+                            "inputs": "1C",
+                            "outputs": ["1w", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1C",
+                            "outputs": ["1Y1b1w", ""]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o1U",
+                            "outputs": "1V"
+                        },
+                        {
+                            "inputs": "1i3C",
+                            "outputs": "3V"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Faderan Conclave",
-            "id": "base-faderan"
+            "id": "base-faderan",
+            "unique-cards": [
+                {
+                    "name": "Archaic Automated Support Network",
+                    "upgrade-name": "Domesticated Automated Support Network",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1s1w1g1b", "D1Y1K"]
+                        }
+                    ],
+                    "upgrade-cards": ["2sc", "2hm"]
+                },
+                {
+                    "name": "Non-Indgenous Fauna",
+                    "upgrade-name": "Genetically Pliable Fauna",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "3g",
+                            "outputs": ["1C1Y1b", "1C"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ge", "1ci"]
+                },
+                {
+                    "name": "Relic Repurposing",
+                    "upgrade-name": "Relic Manufacturing",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2b",
+                            "outputs": ["2s1w", "1w1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2aa", "2ap"]
+                },
+                {
+                    "name": "Ritual Government",
+                    "upgrade-name": "Interspecies Capital",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "4w",
+                            "outputs": ["1U1K1g", "D1V"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs", "2is"]
+                }
+
+            ]
         },
         {
             "name": "Society of Falling Light",
