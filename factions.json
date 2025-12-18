@@ -825,7 +825,81 @@
         },
         {
             "name": "Kjasjavikalimm Independant Nations",
-            "id": "alt-kjas"
+            "id": "alt-kjas",
+            "unique-cards": [
+                {
+                    "name": "Arjsend Commonwealth",
+                    "upgrade-name": "Arjsend Multiplanetary Enclaves",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "D2w",
+                            "outputs": ["D1CY1K", "D1g1w1K"]
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2sc", "2oc"]
+                },
+                {
+                    "name": "Hoslonik Collective",
+                    "upgrade-name": "Hoslonik Diplomatic Understanding",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "D1W",
+                            "outputs": ["D1b1K1s", "D1V"]
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2aa", "2cs"]
+                },
+                {
+                    "name": "Lattik Domain",
+                    "upgrade-name": "Lattik Interstellar Domain",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2C",
+                            "outputs": ["D1w1Y2K", "D1b1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ci", "1ut", "1ur"]
+                },
+                {
+                    "name": "People's Monarchy of Korylnd",
+                    "upgrade-name": "Multispecies Monarchy of Korlynd",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "3Y",
+                            "outputs": ["D1g1b1C1U2S", "D1b1C1s"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs", "2hm", "2ap"]
+                },
+                {
+                    "name": "Republic of Katkaseni",
+                    "upgrade-name": "Katkaseni Trade Republic",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "3B",
+                            "outputs": ["2sD1w1g1C", "D1g1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["1nt", "1ut", "1at"]
+                },
+                {
+                    "name": "Oskir Nation",
+                    "upgrade-name": "Oskir Stellar Nation",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["2sD1b1w", "D1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1qc", "1ge"]
+                }
+            ]
         },
         {
             "name": "Kt'Zr'Kt'Rtl Adhocracy",
