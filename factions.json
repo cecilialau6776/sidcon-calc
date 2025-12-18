@@ -644,7 +644,57 @@
         },
         {
             "name": "Im'Dril Grand Fleet",
-            "id": "alt-imdril"
+            "id": "alt-imdril",
+            "unique-cards": [
+                {
+                    "name": "Aquaculture",
+                    "upgrade-name": "Celestial Gardens",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2b",
+                            "outputs": ["1g1C", "1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1nt"]
+                },
+                {
+                    "name": "Explorer Societies",
+                    "upgrade-name": "Exploration City Ships",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1g1w2s", "1b1s"]
+                        }
+                    ],
+                    "upgrade-cards": ["2sc", "2is"]
+                },
+                {
+                    "name": "Nebular Harvest",
+                    "upgrade-name": "Vacuum Distillers",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1b1s1K", "1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["2oc", "2ap"]
+                },
+                {
+                    "name": "Orbital Construction",
+                    "upgrade-name": "Anchorages",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["", ""]
+                        }
+                    ],
+                    "upgrade-cards": ["1qc", "1ut"]
+                }
+            ]
         },
         {
             "name": "Kjasjavikalimm Directorate",
