@@ -18,10 +18,12 @@
     min-height: 10rem;
     color: white;
     background-color: #0d1721;
+    border-width: .3rem;
 }
 
 .running {
     background-color: #1a2e42;
+    border-color: var(--bs-success) !important;
 }
 
 img.converter-arrow {
@@ -86,4 +88,32 @@ img.donation.ship {
     border-width: .3rem;
     cursor: pointer;
     min-height: 10rem;
+    margin-top: 1rem;
 }
+
+/* start collapses */
+/* disable collapse animation */
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
+
+.card-header.collapsed {
+    border-bottom: none;
+}
+
+.card-header.collapsed > .fa-chevron-down {
+    display: none;
+}
+.card-header:not(.collapsed) > .fa-chevron-right {
+    display: none;
+}
+.card-dropdown > .card-header {
+    cursor: pointer;
+}
+
+.row.card-dropdown {
+    margin-top: 1rem;
+}
+/* end collapses */

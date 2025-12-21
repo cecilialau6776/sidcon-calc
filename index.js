@@ -9,7 +9,7 @@ const ships = document.getElementById("ships-input");
 const vips = document.getElementById("vp-input");
 const score_text = document.getElementById("score");
 const faction_select = document.getElementById("faction-select");
-const card_container = document.getElementById("card-container");
+const card_dropdown_container = document.getElementById("card-dropdown-container");
 const gain_smalls = document.getElementById("gn-smalls");
 const gain_larges = document.getElementById("gn-larges");
 const gain_other = document.getElementById("gn-other");
@@ -308,22 +308,41 @@ function converter(input, output) {
 }
 
 function card(id, name, input, output) {
-    return `
-        <div class="col card converter text-center" id="card-${id}">
-            <div class="card-header">
-                <span class="converter-name" id="card-name-${id}">${name}</span>
-            </div>
-            <div class="card-body converter-display" id="converter-${id}">
-                ${converter(input, output)}
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-light float-start" id="toggle-${id}">Mark Running</button>
-                <button class="btn btn-light float-end" id="upgrade-${id}">Upgrade</button>
-            </div>
-        </div>
-    `;
-}
+    let card_el_wrapper = document.createElement("div");
+    card_el_wrapper.classList.add("col");
+    let card_el = document.createElement("div");
+    card_el.classList.add("col", "card", "converter", "text-center");
+    card_el.id = `card-${id}`;
 
+    let card_header_el = document.createElement("div");
+    card_header_el.classList.add("card-header");
+    card_header_el.innerHTML = `<span class="converter-name" id="card-name-${id}">${name}</span>`;
+    let card_body_el = document.createElement("div");
+    card_body_el.classList.add("card-body");
+    card_body_el.innerHTML = converter(input, output);
+    let card_footer_el = document.createElement("div");
+    card_footer_el.classList.add("card-footer");
+    
+    let toggle_button = document.createElement("button");
+    toggle_button.id = `toggle-${id}`;
+    toggle_button.classList.add("btn", "btn-light", "float-end");
+    toggle_button.innerText = "Mark Running";
+    toggle_button.addEventListener("click", () => {toggle_card(id)});
+    card_footer_el.appendChild(toggle_button);
+    let upgrade_button = document.createElement("button");
+    upgrade_button.classList.add("btn", "btn-light", "float-start");
+    upgrade_button.id = `upgrade-${id}`;
+    upgrade_button.innerText = "Upgrade";
+    upgrade_button.addEventListener("click", () => {toggle_upgrade(id)});
+    card_footer_el.appendChild(upgrade_button);
+
+    card_el.appendChild(card_header_el);
+    card_el.appendChild(card_body_el);
+    card_el.appendChild(card_footer_el);
+
+    card_el_wrapper.appendChild(card_el);
+    return card_el_wrapper;
+}
 
 function toggle_upgrade(i) {
     let u_state = !active_cards[i].upgraded;
@@ -343,6 +362,7 @@ function toggle_upgrade(i) {
         update_score();
     }
 }
+
 function toggle_card(i) {
     let r_state = !active_cards[i].running;
     active_cards[i].running = r_state;
@@ -360,40 +380,34 @@ function toggle_card(i) {
 
 function create_faction_converters() {
     let curr_faction = faction_select.value;
-    card_container.innerHTML = '';
-    if (data[curr_faction].tech_cards) {
-        let i = 0;
-        for (let [id, card_data] of Object.entries(data[curr_faction].tech_cards)) {
-            let card_element = document.createElement('div');
-            card_element.className = 'col';
-            card_element.innerHTML = card(id, card_data.name, card_data.input, card_data.output);
-            card_container.appendChild(card_element);
-
-            let upgrade_button = document.getElementById(`upgrade-${id}`);
-            upgrade_button.onclick = toggle_upgrade.bind(null, id);
-            let toggle_button = document.getElementById(`toggle-${id}`);
-            toggle_button.onclick = toggle_card.bind(null, id);
-
-            active_cards[id] = {
-                data: card_data,
-                upgraded: false,
-                running: false
-            };
-
-            i++;
-        }
+    if (!data[curr_faction].tech_cards) {
+        return;
     }
-    // add an "add card" card at the end of the grid
+
+    cards_by_tier = {};
+    for (let card of Object.entries(data[curr_faction].tech_cards)) {
+        const tier = Array.from(card[0])[0];
+        if (!(tier in cards_by_tier)) {
+            cards_by_tier[tier] = [];
+        }
+        cards_by_tier[tier].push(card);
+    }
+    for (let [tier, cards] of Object.entries(cards_by_tier)) {
+        const card_el = dropdown_card(`Tier ${tier}`, `tier${tier}`, cards);
+        card_dropdown_container.appendChild(card_el);
+    }
+
+    // add an "add card" card at the end
     let card_element = document.createElement('div');
     card_element.setAttribute("data-bs-toggle", "modal")
     card_element.setAttribute("data-bs-target", "#card_selector")
-    card_element.className = 'col';
+    card_element.className = 'row';
     card_element.innerHTML = `
         <div class="col card" id="add-card">
             <h2>+ Add Card</h2>
         </div>
     `;
-    card_container.appendChild(card_element);
+    card_dropdown_container.appendChild(card_element);
 }
 
 /* Start card selector */
@@ -426,8 +440,39 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     card_selector.addEventListener('hide.bs.modal', event => { modal_card_contianer.innerHTML = ''; })
 });
-
 /* End card selector */
+
+/* Start Dropdowns */
+function dropdown_card(title, id, cards) {
+    let card_body_element = document.createElement("div");
+    card_body_element.classList.add("card-body", "collapse");
+    card_body_element.id = id;
+    let card_container = card_body_element.appendChild(document.createElement("div"));
+    card_container.classList.add("row", "row-cols-lg-3", "row-cols-md-2", "row-cols-sm-1", "row-cols-1", "g-2");
+
+    for (let [id, card_data] of cards) {
+        card_container.appendChild(card(id, card_data.name, card_data.input, card_data.output));
+        active_cards[id] = {
+            data: card_data,
+            upgraded: false,
+            running: false
+        };
+    }
+
+    let card_element = document.createElement("div");
+    card_element.classList.add("row", "card", "card-dropdown");
+    card_element.innerHTML = `
+    <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="collapse-${id}">
+            <span class="float-start"><strong>${title}</strong></span>
+            <span class="float-end fa-solid fa-chevron-right">🞂</span>
+            <span class="float-end fa-solid fa-chevron-down">🞃</span>
+        </div>
+    `;
+    card_element.appendChild(card_body_element);
+    return card_element;
+}
+/* End Dropdowns */
+
 
 
 function toggle_net() {
@@ -458,4 +503,6 @@ function main() {
     create_faction_converters();
     net_gain_toggle.onclick = toggle_net;
     update_score();
+    // let c = Object.entries(data[faction_select.value].tech_cards)[0];
+    // card_dropdown_container.appendChild(card_dropdown("chom", "chom-collapse", "no_data"));
 }
