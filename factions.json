@@ -1034,11 +1034,161 @@
         },
         {
             "name": "Yengii Society",
-            "id": "base-yengii"
+            "id": "base-yengii",
+            "unique-cards": [
+                {
+                    "name": "Choice of Paths",
+                    "upgrade-name": "Alien Decision Integration",
+                    "converters": [
+                        {
+                            "inputs": "2w1K",
+                            "outputs": ["1U2g", "2b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2C1o"
+                        }
+                    ]
+                },
+                {
+                    "name": "Empathy of Words",
+                    "upgrade-name": "Interspecies Diplomatic Demesne",
+                    "converters": [
+                        {
+                            "inputs": "2b1C",
+                            "outputs": ["2K2w", "1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2g1j",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Innovation of Hands",
+                    "upgrade-name": "Cross-time Think Tank",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["2s1Y1g", "1g1w"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2K1d",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2aa"]
+                },
+                {
+                    "name": "Social Ecological Mutualism",
+                    "upgrade-name": "Mutualistic Alien Integration",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1C1b2s", "1g1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2ap"]
+                },
+                {
+                    "name": "Work of Mules",
+                    "upgrade-name": "Gravitic Assembly",
+                    "converters": [
+                        {
+                            "inputs": "2g1Y",
+                            "outputs": ["2s1C2b", "2w"]
+                        }
+                    ],
+                    "upgrade-cards": ["2sc"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1U1i",
+                            "outputs": "1V"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Yengii Jii",
-            "id": "alt-yengii"
+            "id": "alt-yengii",
+            "unique-cards": [
+                {
+                    "name": "Foresight of Paths",
+                    "upgrade-name": "Planning Towards the Other",
+                    "converters": [
+                        {
+                            "inputs": "1Y1C1K",
+                            "outputs": ["2b2w2s", "1g1s"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1Y1C1K1o",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2hm"]
+                },
+                {
+                    "name": "Outflying of Words",
+                    "upgrade-name": "Empowering the Outsider",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1K1s", "D1g1w"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2w1j",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["1ci"]
+                },
+                {
+                    "name": "Reimagining of Hands",
+                    "upgrade-name": "Crafting of the Inexpressible",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1Y2g1b", "1K1C"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1U1d",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2oc"]
+                },
+                {
+                    "name": "Sympathy of Mules",
+                    "upgrade-name": "Supporting the Unknowable",
+                    "converters": [
+                        {
+                            "inputs": "1b1g1w",
+                            "outputs": ["1U1C", "1Y"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2b1i",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["1ut"]
+                }
+            ]
         },
         {
             "name": "Zeth Anocracy",
