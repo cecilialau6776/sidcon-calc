@@ -1192,7 +1192,35 @@
         },
         {
             "name": "Zeth Anocracy",
-            "id": "base-zeth"
+            "id": "base-zeth",
+            "unique-cards": [
+                {
+                    "name": "Cascading Deception",
+                    "upgrade-name": "Psychohistorical Deception",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1s2K", "1g"]
+                        },
+                        {
+                            "inputs": "1K",
+                            "outputs": ["2s", ""]
+                        }
+                    ],
+                    "upgrade-cards": ["1ut"]
+                },
+                {
+                    "name": "\"Envoys\"",
+                    "upgrade-name": "Zeth Diaspora",
+                    "converters": [
+                        {
+                            "inputs": "3w",
+                            "outputs": ["D1U1Y1K1b", "1UD1U-1Y1K"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs"]
+                }
+            ]
         },
         {
             "name": "Charity Syndicate",
