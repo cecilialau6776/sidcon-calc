@@ -59,6 +59,26 @@
                                             }
                                         }
                                     }
+                                },
+                                "upgrade-cards": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "placement-converters": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "inputs": {
+                                                "type": "string"
+                                            },
+                                            "outputs": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
