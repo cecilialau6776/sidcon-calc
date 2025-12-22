@@ -453,7 +453,7 @@
                         }
                     ],
                     "upgrade-cards": ["2cs", "2is"]
-                }.
+                },
                 {
                     "name": "Automated Transport Network",
                     "converters": [
@@ -833,7 +833,7 @@
                     "starting": true,
                     "converters": [
                         {
-                            "inputs": "D2w",
+                            "inputs": "D2x",
                             "outputs": ["D1CY1K", "D1g1w1K"]
                         }
                     ],
@@ -845,7 +845,7 @@
                     "starting": true,
                     "converters": [
                         {
-                            "inputs": "D1W",
+                            "inputs": "D1X",
                             "outputs": ["D1b1K1s", "D1V"]
                         }
                     ],
@@ -911,7 +911,122 @@
         },
         {
             "name": "Unity",
-            "id": "base-unity"
+            "id": "base-unity",
+            "unique-cards": [
+                {
+                    "name": "Adamantine Synthesis",
+                    "upgrade-name": "Programmable Pseudomatter",
+                    "converters": [
+                        {
+                            "inputs": "2X",
+                            "outputs": ["1U1g", "1s"]
+                        }
+                    ],
+                    "upgrade-cards": ["1at", "1ci"]
+                },
+                {
+                    "name": "Adaptive Fabrication",
+                    "upgrade-name": "Predictive Fabrication",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1x1X1s", "1a"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "3s1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["1nt"]
+                },
+                {
+                    "name": "Explorer Collection",
+                    "upgrade-name": "Gravity Sunlens Sensor Array",
+                    "converters": [
+                        {
+                            "inputs": "3x",
+                            "outputs": ["2s1K1b", "1X"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2X1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2aa"]
+                },
+                {
+                    "name": "Bézier",
+                    "upgrade-name": "Bézier",
+                    "converters": [
+                        {
+                            "inputs": "3a",
+                            "outputs": ["1X2x", "1X"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "3x1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2oc", "2ap"]
+                },
+                {
+                    "name": "Color Space",
+                    "upgrade-name": "Color Space",
+                    "converters": [
+                        {
+                            "inputs": "2X",
+                            "outputs": ["1X2x", "1X"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "2X1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2cs"]
+                },
+                {
+                    "name": "Fractal Symmetry",
+                    "upgrade-name": "Fractal Symmetry",
+                    "converters": [
+                        {
+                            "inputs": "2x1X",
+                            "outputs": ["1X1U", "1X1x"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "2x1X1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2sc", "2hm"]
+                },
+                {
+                    "name": "Limit",
+                    "upgrade-name": "Limit",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1X3x", "1x"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "3X1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["1ut", "1qc"]
+                }
+            ]
         },
         {
             "name": "Deep Unity",
