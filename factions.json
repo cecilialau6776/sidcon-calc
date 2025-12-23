@@ -1325,7 +1325,7 @@
                     "converters": [
                         {
                             "inputs": "3w",
-                            "outputs": ["D1U1Y1K1b", "1UD1U-1Y1K"]
+                            "outputs": ["D1U1Y1K1b", "1VD1V-1Y1K1b"]
                         }
                     ],
                     "upgrade-cards": ["2cs"]
@@ -1334,7 +1334,49 @@
         },
         {
             "name": "Charity Syndicate",
-            "id": "alt-zeth"
+            "id": "alt-zeth",
+            "unique-cards": [
+                {
+                    "name": "Hill Zeth",
+                    "upgrade-name": "Industrialized Craton",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1K1g1b1s", "1b"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Independent Smugglers",
+                    "upgrade-name": "Gray Market Investments",
+                    "converters": [
+                        {
+                            "inputs": "2Y",
+                            "outputs": ["1g3s", "1K"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Reputation Brokers",
+                    "upgrade-name": "Plausible Culpability Distribution",
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["D2w1K1V", "D1g1b"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Zeth Philosophers",
+                    "upgrade-name": "Memeticists",
+                    "converters": [
+                        {
+                            "inputs": "2w",
+                            "outputs": ["1K1b", "1Y"]
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "tech-cards": {
