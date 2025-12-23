@@ -82,6 +82,64 @@
                                 }
                             }
                         }
+                    },
+                    "distributed-cards": {
+                        "type": "object",
+                        "patternProperties": {
+                            ".": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "upgrade-name": {
+                                        "type": "string"
+                                    },
+                                    "converters": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "inputs": {
+                                                    "type": "string"
+                                                },
+                                                "upgrade-inputs": {
+                                                    "type": "string"
+                                                },
+                                                "outputs": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "maxItems": 2,
+                                                    "minItems": 2
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "upgrade-converters": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "inputs": {
+                                                    "type": "string"
+                                                },
+                                                "outputs": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "upgrade-cards": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

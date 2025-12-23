@@ -1376,7 +1376,109 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "distributed-cards": {
+                "caylion": {
+                    "name": "The Uprooted",
+                    "upgrade-name": "Galactic Explorers",
+                    "converters": [
+                        {
+                            "inputs": "1C",
+                            "outputs": ["1K1w1g1s", "1K1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["2hm", "2aa"]
+                },
+                "eniet": {
+                    "name": "Hadopelagic Exiles",
+                    "upgrade-name": "Abyssal Chorus",
+                    "converters": [
+                        {
+                            "inputs": "3w1g",
+                            "outputs": ["1U1CD1w1V", "D1C1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["2aa"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o2C",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                "faderan": {
+                    "name": "Zealots",
+                    "upgrade-name": "Masterminds",
+                    "converters": [
+                        {
+                            "inputs": "3b",
+                            "outputs": ["1U2w1g", "1C1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2oc"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i2w",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                "imdirl": {
+                    "name": "Disaffected Artists",
+                    "upgrade-name": "Smuggling Guild",
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["1U1Y1b1w", "1C"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1ge"]
+                },
+                "kjas": {
+                    "name": "Anosmia",
+                    "upgrade-name": "Spy Network",
+                    "converters": [
+                        {
+                            "inputs": "1Y",
+                            "outputs": ["1C1K1b1s", "1w1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1ut"]
+                },
+                "kit": {
+                    "name": "Loafers",
+                    "upgrade-name": "Gluttonous Ne'er-do-wells",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1Y1K1w1b1g", "1V"]
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2ap"]
+                },
+                "unity": {
+                    "name": "Free Slices",
+                    "upgrade-name": "Rampant Agents",
+                    "converters": [
+                        {
+                            "inputs": "1x1X",
+                            "outputs": ["1X1K1x1g", "1x1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1ge"]
+                },
+                "yengii": {
+                    "name": "Iconoclasts",
+                    "upgrade-name": "Unbound Yengii",
+                    "converters": [
+                        {
+                            "inputs": "1s1C1K",
+                            "outputs": ["2Y2g1w1b", "1w1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ge", "1qc"]
+                }
+            }
         }
     ],
     "tech-cards": {
