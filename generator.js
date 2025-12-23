@@ -209,7 +209,12 @@ for(let faction of data.factions) {
                 let delta = parse_resources(converter.outputs[1]);
                 let upgrade_output = add_resources(output, delta);
                 converter.input = input;
-                converter.upgrade_input = input;
+                if(converter["upgrade-inputs"]) {
+                    let delta = parse_resources(converter['upgrade-inputs']);
+                    converter.upgrade_input = add_resources(input, delta);
+                } else {
+                    converter.upgrade_input = input;
+                }
                 converter.output = output;
                 converter.upgrade_output = upgrade_output;
                 truncate_resources(converter.input);
@@ -259,7 +264,7 @@ for(let faction of data.factions) {
             card.placement_converters = placement_converters;
             delete card['upgrade-converters'];
             delete card['placement-converters'];
-            
+
             if(card.starting) {
                 faction.starting_cards.push(card);
             } else {
