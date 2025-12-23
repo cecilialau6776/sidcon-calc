@@ -1030,7 +1030,117 @@
         },
         {
             "name": "Deep Unity",
-            "id": "alt-unity"
+            "id": "alt-unity",
+            "unique-cards": [
+                {
+                    "name": "Reality Maintenance Division",
+                    "upgrade-name": "λf.(λx.f(x x))(λx.f(x x))",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1X1x", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "5x",
+                            "outputs": ["", "1U1C1Y1g1b1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Circles",
+                    "upgrade-name": "Pattern",
+                    "converters": [
+                        {
+                            "inputs": "4w",
+                            "outputs": ["3w2b1g1s", "1Y1K-2b1g"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1U1w1b1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Conway's Life Spaceship",
+                    "upgrade-name": "Conway's Life Glider Gun",
+                    "converters": [
+                        {
+                            "inputs": "3Y",
+                            "upgrade-inputs": "-1Y",
+                            "outputs": ["2Y1K1w1b1s", "1g-1Y1w"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "2U",
+                            "outputs": ["", "1U1C2Y1w1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Coxeter diagram Poincaré disk",
+                    "upgrade-name": "Coxeter diagram for 120-cell",
+                    "converters": [
+                        {
+                            "inputs": "3K",
+                            "upgrade-inputs": "-1K",
+                            "outputs": ["2K1C1g1w1s", "1w-1K1g"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1U1b1g1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Dragon Curve",
+                    "upgrade-name": "Chaos",
+                    "converters": [
+                        {
+                            "inputs": "4b",
+                            "outputs": ["3b1C1Y1s", "1K-1C"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1U1b1g1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Purple lines",
+                    "upgrade-name": "Green lines",
+                    "converters": [
+                        {
+                            "inputs": "3C",
+                            "upgrade-inputs": "-1C",
+                            "outputs": ["2C1K1g1w1s", "1Y1b-1C1K1w"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "2U",
+                            "outputs": ["", "1U1Y1C1K1w1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "|G|≤84(g-1)",
+                    "upgrade-name": "∀x(x≠∅→∃y∈x(x∩y=∅))",
+                    "converters": [
+                        {
+                            "inputs": "4g",
+                            "outputs": ["1U3g1s", "2Y-1U"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1U1g1w1s"]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Yengii Society",
