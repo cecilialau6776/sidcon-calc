@@ -823,7 +823,7 @@
                 }
             ]
         },
-        {
+       {
             "name": "Kjasjavikalimm Independant Nations",
             "id": "alt-kjas",
             "unique-cards": [
@@ -903,7 +903,71 @@
         },
         {
             "name": "Kt'Zr'Kt'Rtl Adhocracy",
-            "id": "base-kit"
+            "id": "base-kit",
+            "unique-cards": [
+                {
+                    "name": "Anarchic Sacrificial",
+                    "upgrade-name": "Polysystem",
+                    "converters": [
+                        {
+                            "inputs": "U",
+                            "outputs": ["", "K"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ci", "1ut"]
+                },
+                {
+                    "name": "Diffusion",
+                    "upgrade-name": "Teleological Redesign",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1C1Y1K4s", "D1w1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1nt", "1ge"]
+                },
+                {
+                    "name": "Expansive Social",
+                    "upgrade-name": "Psychohistoric",
+                    "converters": [
+                        {
+                            "inputs": "5g",
+                            "outputs": ["", "1w1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs", "2im"]
+                },
+                {
+                    "name": "Hand Crafted",
+                    "upgrade-name": "Microfabricated",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1U", "1g1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["2oc", "2aa"]
+                },
+                {
+                    "name": "High-Risk Laboratories",
+                    "upgrade-name": "Stellar Power Harnessing",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1w1g2b", "1w1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2hm", "2sc"]
+                },
+                {
+                    "name": "Polyutility Components",
+                    "upgrade-name": "Adaptive Architecture",
+                    "converters": [
+
+                    ]
+                }
+            ]
         },
         {
             "name": "Kt'Zr'Kt'Rtl Technophiles",
@@ -1158,7 +1222,8 @@
                     "upgrade-cards": ["1ur"],
                     "upgrade-converters": [
                         {
-                            "inputs": "2C1o"
+                            "inputs": "2C1o",
+                            "outputs": "1V" 
                         }
                     ]
                 },
