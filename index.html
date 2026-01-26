@@ -18,7 +18,7 @@
             <form class="row">
                 <div class="col input-group">
                     <label for="faction-select" class="input-group-text">Faction:</label>
-                    <select class="form-select" id="faction-select"></select>
+                    <select class="form-select faction-select" id="faction-select"></select>
                 </div>
                 <div class="col input-group">
                     <label for="turn-input" class="input-group-text">Current Turn:</label>
@@ -34,18 +34,56 @@
         <hr>
 
         <div class="container" id="card-dropdown-container">
-            <!-- <div class="card card-dropdown">
-                 <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#chom-id" aria-expanded="false" aria-controls="collapse-chom-id">
-                 <span class="float-start"><strong>Tier 1</strong></span>
-                 <span class="float-end fa-solid fa-chevron-right">🞂</span>
-                 <span class="float-end fa-solid fa-chevron-down">🞃</span>
-                 </div>
-                 <div class="card-body collapse" id="chom-id">
-                 chom!
-                 </div>
-                 </div> -->
-            <!-- <div class="row row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-2" id="card-container">
-                 </div> -->
+            <div class="row card card-dropdown">
+                <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#card-dropdown-starting" aria-expanded="false" aria-controls="collapse-card-dropdown-starting">
+                    <span class="float-start"><strong>Starting</strong></span>
+                    <span class="float-end fa-solid fa-chevron-right">🞂</span>
+                    <span class="float-end fa-solid fa-chevron-down">🞃</span>
+                </div>
+                <div class="card-body collapse" id="card-dropdown-starting">
+                </div>
+            </div>
+            <div class="row card card-dropdown">
+                <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#card-dropdown-tier1" aria-expanded="false" aria-controls="collapse-card-dropdown-tier1">
+                    <span class="float-start"><strong>Tier 1</strong></span>
+                    <span class="float-end fa-solid fa-chevron-right">🞂</span>
+                    <span class="float-end fa-solid fa-chevron-down">🞃</span>
+                </div>
+                <div class="card-body collapse" id="card-dropdown-tier1">
+                </div>
+            </div>
+            <div class="row card card-dropdown">
+                <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#card-dropdown-tier2" aria-expanded="false" aria-controls="collapse-card-dropdown-tier2">
+                    <span class="float-start"><strong>Tier 2</strong></span>
+                    <span class="float-end fa-solid fa-chevron-right">🞂</span>
+                    <span class="float-end fa-solid fa-chevron-down">🞃</span>
+                </div>
+                <div class="card-body collapse" id="card-dropdown-tier2">
+                </div>
+            </div>
+            <div class="row card card-dropdown">
+                <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#card-dropdown-tier3" aria-expanded="false" aria-controls="collapse-card-dropdown-tier3">
+                    <span class="float-start"><strong>Tier 3</strong></span>
+                    <span class="float-end fa-solid fa-chevron-right">🞂</span>
+                    <span class="float-end fa-solid fa-chevron-down">🞃</span>
+                </div>
+                <div class="card-body collapse" id="card-dropdown-tier3">
+                </div>
+            </div>
+            <div class="row card card-dropdown">
+                <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#card-dropdown-misc" aria-expanded="false" aria-controls="collapse-card-dropdown-misc">
+                    <span class="float-start"><strong>Misc</strong></span>
+                    <span class="float-end fa-solid fa-chevron-right">🞂</span>
+                    <span class="float-end fa-solid fa-chevron-down">🞃</span>
+                </div>
+                <div class="card-body collapse" id="card-dropdown-misc">
+                </div>
+            </div>
+            <div class="row" data-bs-toggle="modal" data-bs-target="#card_selector">
+                <div class="col card" id="add-card">
+                    <h2>+ Add Converter(s)</h2>
+                </div>
+            </div>
         </div>
 
         <hr>
@@ -121,8 +159,6 @@
             <br>
         </div>
 
-        <script src="index.js"></script>
-
         <div class="modal" id="card_selector" tabindex="-1">
             <div class="modal-dialog modal-fullscreen"><div class="modal-content">
                 <div class="modal-header">
@@ -130,9 +166,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
-                        <div class="row row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-2" id="modal_card_container">
-                        </div>
+                    <div class="container" id="add-card-dropdown-container">
+                        <form class="row">
+                            <div class="col input-group">
+                                <label for="add-card-faction-select" class="input-group-text">Faction:</label>
+                                <select class="form-select faction-select" id="add-card-faction-select"></select>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -143,6 +183,8 @@
 
             </div>
         </div>
+
+        <script src="index.js"></script>
 
     </body>
 </html>
