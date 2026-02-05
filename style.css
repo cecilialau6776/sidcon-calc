@@ -22,8 +22,13 @@
 }
 
 .running {
-    background-color: #1a2e42;
     border-color: var(--bs-success) !important;
+    border-width: .25rem;
+    opacity: 90%;
+}
+
+.running .card-body {
+    opacity: 50%;
 }
 
 img.converter-arrow {

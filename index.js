@@ -112,13 +112,15 @@ async function getData() {
             if (!(key in faction_data)) {
                 continue;
             }
-            for (let [_id, converter] of Object.entries(faction_data[key])) {
-                converter["running"] = false;
-                converter["owned"] = false;
-                converter["upgraded"] = false;
-                converter["hidden"] = false;
-                converter["ee_tokens"] = 0;
-                converter["ttl"] = 0;
+            for (let [_id, card] of Object.entries(faction_data[key])) {
+                card["upgraded"] = false;
+                for (const converter of card.converters) {
+                    converter["running"] = false;
+                    converter["owned"] = false;
+                    converter["hidden"] = false;
+                    converter["ee_tokens"] = 0;
+                    converter["ttl"] = 0;
+                }
             }
         }
 
@@ -265,7 +267,12 @@ function create_starting_converters() {
     }
 
     for (let [_id, card] of Object.entries(all_cards[curr_faction].starting_cards)) {
-        card.owned = true;
+        for (const converter of card.converters) {
+            if ("upgrade-inputs" in converter) {
+                continue;
+            }
+            converter.owned = true;
+        }
     }
 
     render_cards();
@@ -392,7 +399,7 @@ function format_resources_text(res) {
     return output;
 }
 
-function converter(input, output) {
+function converter_html(input, output) {
     if (USE_ICONS) {
         return `
             <span class="converter-inputs">${format_resources_icons(input)}${WHITE_ARROW_IMG}</span>
@@ -407,11 +414,14 @@ function converter(input, output) {
     }
 }
 
-function create_card_element(id, name, input, output) {
+function create_card_element(faction_id, id, name, converter) {
+    const input = converter.input;
+    const output = converter.output;
     let card_el_wrapper = document.createElement("div");
     card_el_wrapper.classList.add("col");
     let card_el = document.createElement("div");
     card_el.classList.add("col", "card", "converter", "text-center");
+    card_el.setAttribute("data-faction", faction_id);
     card_el.id = `card-${id}`;
 
     let card_header_el = document.createElement("div");
@@ -419,7 +429,7 @@ function create_card_element(id, name, input, output) {
     card_header_el.innerHTML = `<span class="converter-name" id="card-name-${id}">${name}</span>`;
     let card_body_el = document.createElement("div");
     card_body_el.classList.add("card-body");
-    card_body_el.innerHTML = converter(input, output);
+    card_body_el.innerHTML = converter_html(input, output);
     let card_footer_el = document.createElement("div");
     card_footer_el.classList.add("card-footer");
     
@@ -427,7 +437,7 @@ function create_card_element(id, name, input, output) {
     toggle_button.id = `toggle-${id}`;
     toggle_button.classList.add("btn", "btn-light", "float-end");
     toggle_button.innerText = "Mark Running";
-    toggle_button.addEventListener("click", () => {toggle_card(id)});
+    toggle_button.addEventListener("click", (ev) => {toggle_converter(ev.target, converter)});
     card_footer_el.appendChild(toggle_button);
     let upgrade_button = document.createElement("button");
     upgrade_button.classList.add("btn", "btn-light", "float-start");
@@ -453,7 +463,7 @@ function toggle_upgrade(i) {
     let c_display = document.getElementById(`converter-${i}`);
     c_upgrade.innerText = u_state ? "Downgrade" : "Upgrade";
     c_name.innerText = u_state ? data.upgrade_name : data.name;
-    c_display.innerHTML = converter(
+    c_display.innerHTML = converter_html(
         u_state ? data.upgrade_input : data.input,
         u_state ? data.upgrade_output : data.output
     );
@@ -463,17 +473,16 @@ function toggle_upgrade(i) {
     }
 }
 
-function toggle_card(i) {
-    let r_state = !active_cards[i].running;
-    active_cards[i].running = r_state;
-    let data = active_cards[i].data;
-    let c_toggle = document.getElementById(`toggle-${i}`);
-    let c = document.getElementById(`card-${i}`);
-    c_toggle.innerText = r_state ? "Unmark Running" : "Mark Running";
+function toggle_converter(toggle_button_element, converter) {
+    let r_state = !converter.running;
+    converter.running = r_state;
+    let data = converter.data;
+    let card_element = toggle_button_element.parentElement.parentElement;
+    toggle_button_element.innerText = r_state ? "Unmark Running" : "Mark Running";
     if (r_state) {
-        c.classList.add('running');
+        card_element.classList.add('running');
     } else {
-        c.classList.remove('running');
+        card_element.classList.remove('running');
     }
     update_score();
 }
@@ -519,11 +528,6 @@ function dropdown_card(title, id, cards) {
             const card_name = card_name_suffixes ? `${card_data.name} ${String.fromCharCode(65 + index)}` : card_data.name;
             card_container.appendChild(create_card_element(id, card_name, converter.input, converter.output));
         });
-        active_cards[id] = {
-            data: card_data,
-            upgraded: false,
-            running: false
-        };
     }
 
     let card_element = document.createElement("div");
@@ -578,14 +582,14 @@ function render_cards() {
                 continue;
             }
             for (let [card_id, card] of Object.entries(faction_data[key])) {
-                if (!card.owned) {
-                    continue;
-                }
                 let dropdown_el = get_converter_dropdown(faction_id, card_id);
                 const card_name_suffixes = card.converters.length > 1;
                 card.converters.forEach((converter, index) => {
+                    if (!converter.owned) {
+                        return;
+                    }
                     const card_name = card_name_suffixes ? `${card.name} ${String.fromCharCode(65 + index)}` : card.name;
-                    dropdown_el.appendChild(create_card_element(card_id, card_name, converter.input, converter.output));
+                    dropdown_el.appendChild(create_card_element(faction_id, card_id, card_name, converter));
                 });
             }
         }
