@@ -9,7 +9,17 @@ const ships = document.getElementById("ships-input");
 const vips = document.getElementById("vp-input");
 const score_text = document.getElementById("score");
 const faction_select = document.getElementById("faction-select");
-const card_container = document.getElementById("card-container");
+const add_card_faction_select = document.getElementById("add-card-faction-select");
+const card_dropdown_container = document.getElementById("card-dropdown-container");
+const card_selector = document.getElementById('card_selector');
+const add_card_dropdown_container = document.getElementById("add-card-dropdown-container");
+
+let card_dropdown_starting;
+let card_dropdown_t1;
+let card_dropdown_t2;
+let card_dropdown_t3;
+let card_dropdown_misc;
+
 const gain_smalls = document.getElementById("gn-smalls");
 const gain_larges = document.getElementById("gn-larges");
 const gain_other = document.getElementById("gn-other");
@@ -19,7 +29,9 @@ const net_other = document.getElementById("nt-other");
 const net_gain_toggle = document.getElementById("net-gain-toggle");
 const net_holder = document.getElementById("nt-net-holder");
 const gain_holder = document.getElementById("nt-gain-holder");
-let data;
+
+let all_cards;
+let active_cards = {};
 
 const WHITE_ARROW_IMG = '<img class="converter-arrow" src="assets/icons/white_arrow.png" alt="arrow" />';
 
@@ -58,7 +70,61 @@ const CLASSNAMES = {
 
 async function getData() {
     let output = await fetch('./output.json');
-    data = await output.json();
+    const temp = await output.json();
+    // normalize 'all cards' so that data structure is the same between
+    // unique/starting cards and tech cards
+    all_cards = {};
+    for (let [faction_id, faction_data] of Object.entries(temp)) {
+        let data = faction_data;
+
+        const unique_cards = ("unique_cards" in data) ? [...faction_data["unique_cards"]] : [];
+        data["unique_cards"] = {};
+        for (var i = 0; i < unique_cards.length; i++) {
+            const unique_card_id = `unique${i}`; 
+            data["unique_cards"][unique_card_id] = unique_cards[i];
+        }
+
+        const starting_cards = ("starting_cards" in data) ? [...faction_data["starting_cards"]] : [] ;
+        data["starting_cards"] = {};
+        for (var i = 0; i < starting_cards.length; i++) {
+            const starting_card_id = `starting${i}`; 
+            data["starting_cards"][starting_card_id] = starting_cards[i];
+        }
+
+        const transpose_keys = ["input", "output", "upgrade_input", "upgrade_output"];
+        const tech_cards = Object.entries(faction_data["tech_cards"])
+        // data["tech_cards"] = {};
+        for (let [id, card] of tech_cards) {
+            let converter = {};
+            for (const key of transpose_keys) {
+                converter[key] = card[key];
+                delete card[key];
+            }
+            card["converters"] = [converter];
+            data["tech_cards"][id] = card;
+        }
+
+        all_cards[faction_id] = data;
+    }
+    // add properties to all converters
+    for (let [_faction_id, faction_data] of Object.entries(all_cards)) {
+        for (const key of ["tech_cards", "unique_cards", "starting_cards"]) {
+            if (!(key in faction_data)) {
+                continue;
+            }
+            for (let [_id, card] of Object.entries(faction_data[key])) {
+                card["upgraded"] = false;
+                for (const converter of card.converters) {
+                    converter["running"] = false;
+                    converter["owned"] = false;
+                    converter["hidden"] = false;
+                    converter["ee_tokens"] = 0;
+                    converter["ttl"] = 0;
+                }
+            }
+        }
+
+    }
 }
 
 (() => {
@@ -66,9 +132,9 @@ async function getData() {
         console.log('loaded data');
         main();
     });
-})()
+})();
 
-
+/* Start calculations */
 function generate_rotting_totals() {
     return {
         white: parseInt(white.value),
@@ -126,8 +192,6 @@ function calculate_score(totals) {
     };
 }
 
-let active_cards = {};
-
 function converter_to_totals(data, upgraded) {
     let outputs = upgraded ? data.upgrade_output : data.output;
     return add_totals(outputs.owned, outputs.donations);
@@ -158,20 +222,6 @@ function count_card_inputs() {
     return totals;
 }
 
-function format_smalls(total) {
-    return `${total.green ?? 0} green, ${total.brown ?? 0} brown, ${total.white ?? 0} white`;
-}
-
-function format_larges(total) {
-    return `${total.blue ?? 0} blue, ${total.yellow ?? 0} yellow, ${total.black ?? 0} black`;
-}
-
-function format_other(total) {
-    return `${total.ultratech ?? 0} ultratech, ${total.ships ?? 0} ships, ${total.vp ?? 0} vp`;
-}
-
-let calc_net = false;
-
 function update_score() {
     let rotting = generate_rotting_totals();
     let cards = generate_card_totals();
@@ -192,14 +242,71 @@ function update_score() {
     net_larges.innerText = format_larges(net);
     net_other.innerText = format_other(net);
 }
+/* End calculations */
+
+/* Start formatting */
+function format_smalls(total) {
+    return `${total.green ?? 0} green, ${total.brown ?? 0} brown, ${total.white ?? 0} white`;
+}
+
+function format_larges(total) {
+    return `${total.blue ?? 0} blue, ${total.yellow ?? 0} yellow, ${total.black ?? 0} black`;
+}
+
+function format_other(total) {
+    return `${total.ultratech ?? 0} ultratech, ${total.ships ?? 0} ships, ${total.vp ?? 0} vp`;
+}
+/* End formatting */
+
+let calc_net = false;
+
+function create_starting_converters() {
+    let curr_faction = faction_select.value;
+    if (!all_cards[curr_faction].starting_cards) {
+        return;
+    }
+
+    for (let [_id, card] of Object.entries(all_cards[curr_faction].starting_cards)) {
+        for (const converter of card.converters) {
+            if ("upgrade-inputs" in converter) {
+                continue;
+            }
+            converter.owned = true;
+        }
+    }
+
+    render_cards();
+}
 
 function create_faction_options() {
-    for (let faction of Object.values(data)) {
-        let option = document.createElement("option");
-        option.value = faction.id;
-        option.innerText = faction.name;
-        faction_select.appendChild(option);
+    for (const el of document.getElementsByClassName("faction-select")) {
+        for (let faction of Object.values(all_cards)) {
+            let option = document.createElement("option");
+            option.value = faction.id;
+            option.innerText = faction.name;
+            el.appendChild(option);
+            active_cards[faction.id] = {};
+        }
     }
+}
+
+function create_card_dropdowns() {
+    card_dropdown_container.innerHTML = "";
+    card_dropdown_starting = card_dropdown_container.appendChild(dropdown_card("Starting", "card-dropdown-starting", []));
+    card_dropdown_t1 = card_dropdown_container.appendChild(dropdown_card("Tier 1", "card-dropdown-tier1", []));
+    card_dropdown_t2 = card_dropdown_container.appendChild(dropdown_card("Tier 2", "card-dropdown-tier2", []));
+    card_dropdown_t3 = card_dropdown_container.appendChild(dropdown_card("Tier 3", "card-dropdown-tier3", []));
+    card_dropdown_misc = card_dropdown_container.appendChild(dropdown_card("Misc", "card-dropdown-misc", []));
+    card_dropdown_starting = card_dropdown_starting.children[1].children[0];
+    card_dropdown_t1 = card_dropdown_t1.children[1].children[0];
+    card_dropdown_t2 = card_dropdown_t2.children[1].children[0];
+    card_dropdown_t3 = card_dropdown_t3.children[1].children[0];
+    card_dropdown_misc = card_dropdown_misc.children[1].children[0];
+    add_card_element = card_dropdown_container.appendChild(document.createElement("div"));
+    add_card_element.classList.add("row");
+    add_card_element.setAttribute("data-bs-toggle", "modal");
+    add_card_element.setAttribute("data-bs-target", "#card_selector");
+    add_card_element.innerHTML = `<div class="col card" id="add-card"><h2>+ Add Converter(s)</h2></div>`;
 }
 
 function isEmptyObject(obj) {
@@ -292,7 +399,7 @@ function format_resources_text(res) {
     return output;
 }
 
-function converter(input, output) {
+function converter_html(input, output) {
     if (USE_ICONS) {
         return `
             <span class="converter-inputs">${format_resources_icons(input)}${WHITE_ARROW_IMG}</span>
@@ -307,23 +414,45 @@ function converter(input, output) {
     }
 }
 
-function card(id, name, input, output) {
-    return `
-        <div class="col card converter text-center" id="card-${id}">
-            <div class="card-header">
-                <span class="converter-name" id="card-name-${id}">${name}</span>
-            </div>
-            <div class="card-body converter-display" id="converter-${id}">
-                ${converter(input, output)}
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-light float-start" id="toggle-${id}">Mark Running</button>
-                <button class="btn btn-light float-end" id="upgrade-${id}">Upgrade</button>
-            </div>
-        </div>
-    `;
-}
+function create_card_element(faction_id, id, name, converter) {
+    const input = converter.input;
+    const output = converter.output;
+    let card_el_wrapper = document.createElement("div");
+    card_el_wrapper.classList.add("col");
+    let card_el = document.createElement("div");
+    card_el.classList.add("col", "card", "converter", "text-center");
+    card_el.setAttribute("data-faction", faction_id);
+    card_el.id = `card-${id}`;
 
+    let card_header_el = document.createElement("div");
+    card_header_el.classList.add("card-header");
+    card_header_el.innerHTML = `<span class="converter-name" id="card-name-${id}">${name}</span>`;
+    let card_body_el = document.createElement("div");
+    card_body_el.classList.add("card-body");
+    card_body_el.innerHTML = converter_html(input, output);
+    let card_footer_el = document.createElement("div");
+    card_footer_el.classList.add("card-footer");
+    
+    let toggle_button = document.createElement("button");
+    toggle_button.id = `toggle-${id}`;
+    toggle_button.classList.add("btn", "btn-light", "float-end");
+    toggle_button.innerText = "Mark Running";
+    toggle_button.addEventListener("click", (ev) => {toggle_converter(ev.target, converter)});
+    card_footer_el.appendChild(toggle_button);
+    let upgrade_button = document.createElement("button");
+    upgrade_button.classList.add("btn", "btn-light", "float-start");
+    upgrade_button.id = `upgrade-${id}`;
+    upgrade_button.innerText = "Upgrade";
+    upgrade_button.addEventListener("click", () => {toggle_upgrade(id)});
+    card_footer_el.appendChild(upgrade_button);
+
+    card_el.appendChild(card_header_el);
+    card_el.appendChild(card_body_el);
+    card_el.appendChild(card_footer_el);
+
+    card_el_wrapper.appendChild(card_el);
+    return card_el_wrapper;
+}
 
 function toggle_upgrade(i) {
     let u_state = !active_cards[i].upgraded;
@@ -334,7 +463,7 @@ function toggle_upgrade(i) {
     let c_display = document.getElementById(`converter-${i}`);
     c_upgrade.innerText = u_state ? "Downgrade" : "Upgrade";
     c_name.innerText = u_state ? data.upgrade_name : data.name;
-    c_display.innerHTML = converter(
+    c_display.innerHTML = converter_html(
         u_state ? data.upgrade_input : data.input,
         u_state ? data.upgrade_output : data.output
     );
@@ -344,48 +473,110 @@ function toggle_upgrade(i) {
     }
 }
 
-function toggle_card(i) {
-    let r_state = !active_cards[i].running;
-    active_cards[i].running = r_state;
-    let data = active_cards[i].data;
-    let c_toggle = document.getElementById(`toggle-${i}`);
-    let c = document.getElementById(`card-${i}`);
-    c_toggle.innerText = r_state ? "Unmark Running" : "Mark Running";
+function toggle_converter(toggle_button_element, converter) {
+    let r_state = !converter.running;
+    converter.running = r_state;
+    let data = converter.data;
+    let card_element = toggle_button_element.parentElement.parentElement;
+    toggle_button_element.innerText = r_state ? "Unmark Running" : "Mark Running";
     if (r_state) {
-        c.classList.add('running');
+        card_element.classList.add('running');
     } else {
-        c.classList.remove('running');
+        card_element.classList.remove('running');
     }
     update_score();
 }
 
-function create_faction_converters() {
-    let curr_faction = faction_select.value;
-    card_container.innerHTML = '';
-    if (data[curr_faction].tech_cards) {
-        let i = 0;
-        for (let [id, card_data] of Object.entries(data[curr_faction].tech_cards)) {
-            let card_element = document.createElement('div');
-            card_element.className = 'col';
-            card_element.innerHTML = card(id, card_data.name, card_data.input, card_data.output);
-            // card_element.id = `card-${id}`;
-            card_container.appendChild(card_element);
+/* Start card selector */
 
-            let upgrade_button = document.getElementById(`upgrade-${id}`);
-            upgrade_button.onclick = toggle_upgrade.bind(null, id);
-            let toggle_button = document.getElementById(`toggle-${id}`);
-            toggle_button.onclick = toggle_card.bind(null, id);
+// card_selector.addEventListener('hide.bs.modal', event => { modal_card_contianer.innerHTML = ''; })
 
-            active_cards[id] = {
-                data: card_data,
-                upgraded: false,
-                running: false
-            };
-
-            i++;
+function render_add_card_modal() {
+    add_card_dropdown_container.innerHTML = "";
+    let card_dropdown_starting = add_card_dropdown_container.appendChild(dropdown_card("Starting", "add-card-dropdown-starting", []));
+    let card_dropdown_t1 = add_card_dropdown_container.appendChild(dropdown_card("Tier 1", "add-card-dropdown-tier1", []));
+    let card_dropdown_t2 = add_card_dropdown_container.appendChild(dropdown_card("Tier 2", "add-card-dropdown-tier2", []));
+    let card_dropdown_t3 = add_card_dropdown_container.appendChild(dropdown_card("Tier 3", "add-card-dropdown-tier3", []));
+    let card_dropdown_misc = add_card_dropdown_container.appendChild(dropdown_card("Misc", "add-card-dropdown-misc", []));
+    card_dropdown_starting = card_dropdown_starting.children[1].children[0];
+    card_dropdown_t1 = card_dropdown_t1.children[1].children[0];
+    card_dropdown_t2 = card_dropdown_t2.children[1].children[0];
+    card_dropdown_t3 = card_dropdown_t3.children[1].children[0];
+    card_dropdown_misc = card_dropdown_misc.children[1].children[0];
+    
+    for (let [faction_id, faction_data] of Object.entries(all_cards)) {
+        for (const key of ["tech_cards", "unique_cards", "starting_cards"]) {
+            if (!(key in faction_data)) {
+                continue;
+            }
+            for (let [card_id, card] of Object.entries(faction_data[key])) {
+                let dropdown_el = get_converter_dropdown(faction_id, card_id, "add-");
+                const card_name_suffixes = card.converters.length > 1;
+                card.converters.forEach((converter, index) => {
+                    if (converter.owned) {
+                        return;
+                    }
+                    const card_name = card_name_suffixes ? `${card.name} ${String.fromCharCode(65 + index)}` : card.name;
+                    dropdown_el.appendChild(create_card_element(faction_id, card_id, card_name, converter));
+                });
+            }
         }
     }
 }
+
+function fill_add_card_modal() {
+    let curr_faction = add_card_faction_select.value;
+    if (!all_cards[curr_faction].tech_cards) {
+        return;
+    }
+
+    cards_by_tier = {};
+    for (let card of Object.entries(all_cards[curr_faction].tech_cards)) {
+        const tier = Array.from(card[0])[0];
+        if (!(tier in cards_by_tier)) {
+            cards_by_tier[tier] = [];
+        }
+        cards_by_tier[tier].push(card);
+    }
+    for (let [tier, cards] of Object.entries(cards_by_tier)) {
+        const card_el = dropdown_card(`Tier ${tier}`, `tier${tier}`, cards);
+        add_card_dropdown_container.appendChild(card_el);
+    }
+  
+}
+/* End card selector */
+
+/* Start Dropdowns */
+function dropdown_card(title, id, cards) {
+    let card_body_element = document.createElement("div");
+    card_body_element.classList.add("card-body", "collapse");
+    card_body_element.id = id;
+    let card_container = card_body_element.appendChild(document.createElement("div"));
+    card_container.classList.add("row", "row-cols-lg-3", "row-cols-md-2", "row-cols-sm-1", "row-cols-1", "g-2");
+
+    for (let [id, card_data] of cards) {
+        const card_name_suffixes = card_data.converters.length > 1;
+        card_data.converters.forEach((converter, index) => {
+            const card_name = card_name_suffixes ? `${card_data.name} ${String.fromCharCode(65 + index)}` : card_data.name;
+            card_container.appendChild(create_card_element(id, card_name, converter.input, converter.output));
+        });
+    }
+
+    let card_element = document.createElement("div");
+    card_element.classList.add("row", "card", "card-dropdown");
+    card_element.innerHTML = `
+    <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="collapse-${id}">
+            <span class="float-start"><strong>${title}</strong></span>
+            <span class="float-end fa-solid fa-chevron-right">🞂</span>
+            <span class="float-end fa-solid fa-chevron-down">🞃</span>
+        </div>
+    `;
+    card_element.appendChild(card_body_element);
+    return card_element;
+}
+/* End Dropdowns */
+
+
 
 function toggle_net() {
     if (calc_net) {
@@ -400,6 +591,43 @@ function toggle_net() {
     calc_net = !calc_net;
 }
 
+function get_converter_dropdown(faction_id, card_id, dropdown_prefix = "") {
+    if (faction_id != faction_select.value) {
+        return card_dropdown_misc;
+    }
+    if (card_id.startsWith("starting")) {
+        return card_dropdown_starting;
+    }
+    const tier = Array.from(card_id)[0];
+    return document.getElementById(`${dropdown_prefix}card_dropdown_tier${tier}`)
+}
+
+function render_cards() {
+    card_dropdown_starting.innerHTML = "";
+    card_dropdown_t1.innerHTML = "";
+    card_dropdown_t2.innerHTML = "";
+    card_dropdown_t3.innerHTML = "";
+    card_dropdown_misc.innerHTML = "";
+    for (let [faction_id, faction_data] of Object.entries(all_cards)) {
+        for (const key of ["tech_cards", "unique_cards", "starting_cards"]) {
+            if (!(key in faction_data)) {
+                continue;
+            }
+            for (let [card_id, card] of Object.entries(faction_data[key])) {
+                let dropdown_el = get_converter_dropdown(faction_id, card_id);
+                const card_name_suffixes = card.converters.length > 1;
+                card.converters.forEach((converter, index) => {
+                    if (!converter.owned) {
+                        return;
+                    }
+                    const card_name = card_name_suffixes ? `${card.name} ${String.fromCharCode(65 + index)}` : card.name;
+                    dropdown_el.appendChild(create_card_element(faction_id, card_id, card_name, converter));
+                });
+            }
+        }
+    }
+}
+
 function main() {
     white.oninput = update_score;
     brown.oninput = update_score;
@@ -411,8 +639,12 @@ function main() {
     ships.oninput = update_score;
     vips.oninput = update_score;
     create_faction_options();
-    faction_select.oninput = create_faction_converters;
-    create_faction_converters();
+    create_card_dropdowns();
+    faction_select.addEventListener("input", create_starting_converters);
+    create_starting_converters();
     net_gain_toggle.onclick = toggle_net;
     update_score();
+    card_selector.addEventListener('show.bs.modal', render_add_card_modal);
+    // let c = Object.entries(data[faction_select.value].tech_cards)[0];
+    // card_dropdown_container.appendChild(card_dropdown("chom", "chom-collapse", "no_data"));
 }

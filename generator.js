@@ -61,8 +61,6 @@ function default_resources() {
     }
 }
 
-
-
 function parse_resources(str) {
     let count = 0;
     let donations = false;
@@ -197,6 +195,85 @@ for(let [id, card] of Object.entries(data["tech-cards"])) {
 let factions = {};
 
 for(let faction of data.factions) {
+    if(faction['unique-cards']) {
+        faction.starting_cards = [];
+        faction.unique_cards = [];
+
+        for(let card of faction['unique-cards']) {
+            let converters = [];
+            let upgrade_converters = [];
+            let placement_converters = [];
+            for(let converter of card.converters) {
+                let input = parse_resources(converter.inputs);
+                let output = parse_resources(converter.outputs[0]);
+                let delta = parse_resources(converter.outputs[1]);
+                let upgrade_output = add_resources(output, delta);
+                converter.input = input;
+                if(converter["upgrade-inputs"]) {
+                    let delta = parse_resources(converter['upgrade-inputs']);
+                    converter.upgrade_input = add_resources(input, delta);
+                } else {
+                    converter.upgrade_input = input;
+                }
+                converter.output = output;
+                converter.upgrade_output = upgrade_output;
+                truncate_resources(converter.input);
+                truncate_resources(converter.upgrade_input);
+                truncate_resources(converter.output);
+                truncate_resources(converter.upgrade_output);
+                delete converter.inputs;
+                delete converter.outputs;
+                converters.push(converter);
+            }
+
+            if(card['upgrade-converters']) {
+                for(let converter of card['upgrade-converters']) {
+                    let input = parse_resources(converter.inputs);
+                    let output = parse_resources(converter.outputs);
+                    converter.input = input;
+                    converter.output = output;
+                    truncate_resources(converter.input);
+                    truncate_resources(converter.output);
+                    delete converter.inputs;
+                    delete converter.outputs;
+                    upgrade_converters.push(converter);
+                }
+            }
+
+            if(card['placement-converters']) {
+                for(let converter of card['placement-converters']) {
+                    let input = parse_resources(converter.inputs);
+                    let output = parse_resources(converter.outputs);
+                    converter.input = input;
+                    converter.output = output;
+                    truncate_resources(converter.input);
+                    truncate_resources(converter.output);
+                    delete converter.inputs;
+                    delete converter.outputs;
+                    placement_converters.push(converter);
+                }
+            }
+
+            if(card['upgrade-cards']) {
+                card.upgrade_cards = card['upgrade-cards'];
+                delete card['upgrade-cards'];
+            }
+
+            card.converters = converters;
+            card.upgrade_converters = upgrade_converters;
+            card.placement_converters = placement_converters;
+            delete card['upgrade-converters'];
+            delete card['placement-converters'];
+
+            if(card.starting) {
+                faction.starting_cards.push(card);
+            } else {
+                faction.unique_cards.push(card);
+            }
+        }
+        delete faction['unique-cards'];
+    } 
+
     factions[faction.id] = faction;
 }
 
@@ -212,9 +289,7 @@ for(let [species, species_data] of Object.entries(data.species)) {
 
         if(species_data['upgrade-inputs'][id]) {
             let delta = parse_resources(species_data['upgrade-inputs'][id]);
-            console.log(JSON.stringify(delta));
             let new_inputs = add_resources(card.upgrade_input, delta);
-            console.log(JSON.stringify(new_inputs));
             card.upgrade_input = new_inputs;
         }
 

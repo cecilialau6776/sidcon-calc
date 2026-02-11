@@ -8,6 +8,7 @@
                 {
                     "name": "Distributed Telenet",
                     "upgrade-name": "Ansible Driven Intersystem Society",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1K",
@@ -24,6 +25,7 @@
                 {
                     "name": "Lunar Mining Consortium",
                     "upgrade-name": "Auxonic Outersystem Harvesting",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2C",
@@ -40,6 +42,7 @@
                 {
                     "name": "Oceanic Processing",
                     "upgrade-name": "Planetwide Industrial Mariculture",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2g",
@@ -56,6 +59,7 @@
                 {
                     "name": "Planetary Ecological Dominance",
                     "upgrade-name": "Systemwide Gravitic Dominance",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -78,6 +82,7 @@
                 {
                     "name": "Antigravity Exports",
                     "upgrade-name": "Personal Gravity Manipulation",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2g",
@@ -94,6 +99,7 @@
                 {
                     "name": "Diplomatic Enclave",
                     "upgrade-name": "Interspecies Parliment",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -110,6 +116,7 @@
                 {
                     "name": "Ocean Leasing",
                     "upgrade-name": "Alient Oceanic Settling",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1C",
@@ -126,6 +133,7 @@
                 {
                     "name": "Orbital Manufacturing",
                     "upgrade-name": "Interplanetary Mining Partnership",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2K",
@@ -148,6 +156,7 @@
                 {
                     "name": "Bone Carving",
                     "upgrade-name": "Nanocraft",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2C",
@@ -164,6 +173,7 @@
                 {
                     "name": "Choral Song",
                     "upgrade-name": "Eternal Music",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "5w",
@@ -180,6 +190,7 @@
                 {
                     "name": "Cultural Charity",
                     "upgrade-name": "Omnicultural Dynamic Charity",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "8a",
@@ -190,6 +201,7 @@
                 {
                     "name": "Deep Hunting",
                     "upgrade-name": "Pelagic Bounty",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -206,6 +218,7 @@
                 {
                     "name": "Elder's Wisdom",
                     "upgrade-name": "Immortal's Wisdom",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "6A",
@@ -216,6 +229,7 @@
                 {
                     "name": "Intercultural Archive",
                     "upgrade-name": "Ubiquitous Cultrual Influence",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "3A",
@@ -226,6 +240,7 @@
                 {
                     "name": "Mutual Understanding",
                     "upgrade-name": "Interspecies Empathy",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2a",
@@ -236,6 +251,7 @@
                 {
                     "name": "Universal Applied Metaethics",
                     "upgrade-name": "Omnispecies Metaethical Models",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1U",
@@ -252,6 +268,7 @@
                 {
                     "name": "Volunteer Medical Movement",
                     "upgrade-name": "Universal Health",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "6a",
@@ -262,6 +279,7 @@
                 {
                     "name": "Xenotech Pool",
                     "upgrade-name": "Ultratech Community",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "3U",
@@ -273,35 +291,683 @@
         },
         {
             "name": "Eni Et Engineers",
-            "id": "alt-eniet"
+            "id": "alt-eniet",
+            "unique-cards": [
+                {
+                    "name": "Alien Efficency Studies",
+                    "upgrade-name": "Atomic Recycling",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1b1g", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1C1w1g1b"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o4w",
+                            "outputs": "1V"
+                        },
+                        {
+                            "inputs": "1i2U",
+                            "outputs": "3V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Ship Fabricator",
+                    "upgrade-name": "Orbital Moot",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": [ "2s1w", "1C"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o2w",
+                            "outputs": "1V"
+                        },
+                        {
+                            "inputs": "1j1U",
+                            "outputs": "2V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Educational Mythology",
+                    "upgrade-name": "Technological Apprenticeships",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2w",
+                            "outputs": ["1b", ""]
+                        },
+                        {
+                            "inputs": "2w",
+                            "outputs": ["1C1K", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "2w",
+                            "outputs": ["", "1U1Y"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o3C",
+                            "outputs": "1V"
+                        },
+                        {
+                            "inputs": "1d6w",
+                            "outputs": "3V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Hydroothermal Smelting",
+                    "upgrade-name": "Endless Refinement",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "1C",
+                            "outputs": ["2s", ""]
+                        },
+                        {
+                            "inputs": "1C",
+                            "outputs": ["1w", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1C",
+                            "outputs": ["1Y1b1w", ""]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o1U",
+                            "outputs": "1V"
+                        },
+                        {
+                            "inputs": "1i3C",
+                            "outputs": "3V"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Faderan Conclave",
-            "id": "base-faderan"
+            "id": "base-faderan",
+            "unique-cards": [
+                {
+                    "name": "Archaic Automated Support Network",
+                    "upgrade-name": "Domesticated Automated Support Network",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1s1w1g1b", "D1Y1K"]
+                        }
+                    ],
+                    "upgrade-cards": ["2sc", "2hm"]
+                },
+                {
+                    "name": "Non-Indgenous Fauna",
+                    "upgrade-name": "Genetically Pliable Fauna",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "3g",
+                            "outputs": ["1C1Y1b", "1C"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ge", "1ci"]
+                },
+                {
+                    "name": "Relic Repurposing",
+                    "upgrade-name": "Relic Manufacturing",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2b",
+                            "outputs": ["2s1w", "1w1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2aa", "2ap"]
+                },
+                {
+                    "name": "Ritual Government",
+                    "upgrade-name": "Interspecies Capital",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "4w",
+                            "outputs": ["1U1K1g", "D1V"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs", "2is"]
+                },
+                {
+                    "name": "Automated Transport Network",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1g", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "Library of Entelechy",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["D1V1K1g1w", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "Nalgorian Grindstone",
+                    "converters": [
+                        {
+                            "inputs": "1V",
+                            "outputs": ["1C1K1b1g", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "The Grand Armilla",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["4s", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "Thil's Demiring",
+                    "converters": [
+                        {
+                            "inputs": "1Y1K",
+                            "outputs": ["2V", ""]
+                        }
+                    ]
+                },
+                {
+                    "name": "Transmutive Decomposer",
+                    "converters": [
+                        {
+                            "inputs": "2s",
+                            "outputs": ["1U1Y1b1g", ""]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Society of Falling Light",
-            "id": "alt-faderan"
+            "id": "alt-faderan",
+            "unique-cards": [
+                {
+                    "name": "Diplomats",
+                    "upgrade-name": "Advisors",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "5w",
+                            "outputs": ["1s2K1C1Y", "2V"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i4K",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Im'dril Auxiliaries",
+                    "upgrade-name": "Client Species",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "4b",
+                            "outputs": ["1Y1C3s", "1C1V"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i3C",
+                            "outputs": "1s"
+                        }
+                    ]
+                },
+                {
+                    "name": "Memory Harvest",
+                    "upgrade-name": "Reckless Innovation",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "5g",
+                            "outputs": ["2w1b1s1U", "1K1V"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i3Y",
+                            "outputs": "1s"
+                        }
+                    ]
+                },
+                {
+                    "name": "Rim Gate Network",
+                    "upgrade-name": "Imperial Ambition",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1s2g1w1Y", "1U"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i2b1w1g",
+                            "outputs": ""
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Im'Dril Nomads",
-            "id": "base-imdril"
+            "id": "base-imdril",
+            "unique-cards": [
+                {
+                    "name": "Asteroid Mining",
+                    "upgrade-name": "Asteroid Construction Yards",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1s2b", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1Y",
+                            "outputs": ["", "1C1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2ap", "2hm"]
+                },
+                {
+                    "name": "Faderan Relic Caches",
+                    "upgrade-name": "Relic REsynthesis",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2U",
+                            "outputs": ["1K2Y2C2g1b1w", "1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1at", "1ci"]
+                },
+                {
+                    "name": "Galactic Exploration",
+                    "upgrade-name": "Galactic Windfall Cartography",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["1U1C2w1g", "1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["2aa", "2hm"]
+                },
+                {
+                    "name": "Microgravity Assembly",
+                    "upgrade-name": "Distributed Manufacturing",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "4b",
+                            "outputs": ["4s2Y1K1C", ""]
+                        }
+                    ],
+                    "upgrade-cards": ["1nt", "1qc"]
+                }
+            ]
         },
         {
             "name": "Im'Dril Grand Fleet",
-            "id": "alt-imdril"
+            "id": "alt-imdril",
+            "unique-cards": [
+                {
+                    "name": "Aquaculture",
+                    "upgrade-name": "Celestial Gardens",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2b",
+                            "outputs": ["1g1C", "1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1nt"]
+                },
+                {
+                    "name": "Explorer Societies",
+                    "upgrade-name": "Exploration City Ships",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1g1w2s", "1b1s"]
+                        }
+                    ],
+                    "upgrade-cards": ["2sc", "2is"]
+                },
+                {
+                    "name": "Nebular Harvest",
+                    "upgrade-name": "Vacuum Distillers",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1b1s1K", "1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["2oc", "2ap"]
+                },
+                {
+                    "name": "Orbital Construction",
+                    "upgrade-name": "Anchorages",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["", ""]
+                        }
+                    ],
+                    "upgrade-cards": ["1qc", "1ut"]
+                }
+            ]
         },
         {
             "name": "Kjasjavikalimm Directorate",
-            "id": "base-kjas"
+            "id": "base-kjas",
+            "unique-cards": [
+                {
+                    "name": "Perfume Pheromone Loyalty",
+                    "upgrade-name": "Multiconformal Pheromonics",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "4b",
+                            "outputs": ["1Y1K1C1w", "D1g1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ge", "1nt"]
+                },
+                {
+                    "name": "Starstrider Jumpcores",
+                    "upgrade-name": "Fastjump Network",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2C",
+                            "outputs": ["4s1g", "1s1V-1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2hm", "2sc"]
+                },
+                {
+                    "name": "Underground Cities",
+                    "upgrade-name": "Asteroid Mine Network",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["3s2b", "1C"]
+                        }
+                    ],
+                    "upgrade-cards": ["2oc", "2ap"]
+                },
+                {
+                    "name": "Balkanized State's Colonies",
+                    "upgrade-name": "Outer Reaches Hegemony",
+                    "converters": [
+                        {
+                            "inputs": "1g",
+                            "outputs": ["2sD1w", ""]
+                        },
+                        {
+                            "inputs": "1C",
+                            "outputs": ["1K1bD1w", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1V1YD1g1b1w"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "1d1i1b2Y",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1d1j1i2b",
+                            "outputs": "2V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Hadsja Vassal Territory",
+                    "upgrade-name": "Hadsja Empire",
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["1U1C1b1g", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgraded-inputs": "3Y",
+                            "outputs": ["", "1C1b2g2w2s"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "1d1j3Y",
+                            "outputs": "2V"
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1d1o1i2Y",
+                            "outputs": "3V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Vagnleg Suzerainty",
+                    "upgrade-name": "Vagnleg Dominion",
+                    "converters": [
+                        {
+                            "inputs": "2w",
+                            "outputs": ["1V1Y1b", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "4b",
+                            "outputs": ["", "1V1U1g1s"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "1d1o3Y",
+                            "outputs": "2Y"
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1d1j1i2Y",
+                            "outputs": "3V"
+                        }
+                    ]
+                }
+            ]
         },
-        {
+       {
             "name": "Kjasjavikalimm Independant Nations",
-            "id": "alt-kjas"
+            "id": "alt-kjas",
+            "unique-cards": [
+                {
+                    "name": "Arjsend Commonwealth",
+                    "upgrade-name": "Arjsend Multiplanetary Enclaves",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "D2x",
+                            "outputs": ["D1CY1K", "D1g1w1K"]
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2sc", "2oc"]
+                },
+                {
+                    "name": "Hoslonik Collective",
+                    "upgrade-name": "Hoslonik Diplomatic Understanding",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "D1X",
+                            "outputs": ["D1b1K1s", "D1V"]
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2aa", "2cs"]
+                },
+                {
+                    "name": "Lattik Domain",
+                    "upgrade-name": "Lattik Interstellar Domain",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "2C",
+                            "outputs": ["D1w1Y2K", "D1b1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ci", "1ut", "1ur"]
+                },
+                {
+                    "name": "People's Monarchy of Korylnd",
+                    "upgrade-name": "Multispecies Monarchy of Korlynd",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "3Y",
+                            "outputs": ["D1g1b1C1U2S", "D1b1C1s"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs", "2hm", "2ap"]
+                },
+                {
+                    "name": "Republic of Katkaseni",
+                    "upgrade-name": "Katkaseni Trade Republic",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "3B",
+                            "outputs": ["2sD1w1g1C", "D1g1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["1nt", "1ut", "1at"]
+                },
+                {
+                    "name": "Oskir Nation",
+                    "upgrade-name": "Oskir Stellar Nation",
+                    "starting": true,
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["2sD1b1w", "D1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1qc", "1ge"]
+                }
+            ]
         },
         {
             "name": "Kt'Zr'Kt'Rtl Adhocracy",
-            "id": "base-kit"
+            "id": "base-kit",
+            "unique-cards": [
+                {
+                    "name": "Anarchic Sacrificial",
+                    "upgrade-name": "Polysystem",
+                    "converters": [
+                        {
+                            "inputs": "U",
+                            "outputs": ["", "K"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ci", "1ut"]
+                },
+                {
+                    "name": "Diffusion",
+                    "upgrade-name": "Teleological Redesign",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1C1Y1K4s", "D1w1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1nt", "1ge"]
+                },
+                {
+                    "name": "Expansive Social",
+                    "upgrade-name": "Psychohistoric",
+                    "converters": [
+                        {
+                            "inputs": "5g",
+                            "outputs": ["", "1w1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs", "2im"]
+                },
+                {
+                    "name": "Hand Crafted",
+                    "upgrade-name": "Microfabricated",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1U", "1g1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["2oc", "2aa"]
+                },
+                {
+                    "name": "High-Risk Laboratories",
+                    "upgrade-name": "Stellar Power Harnessing",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1w1g2b", "1w1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2hm", "2sc"]
+                },
+                {
+                    "name": "Polyutility Components",
+                    "upgrade-name": "Adaptive Architecture",
+                    "converters": [
+
+                    ]
+                }
+            ]
         },
         {
             "name": "Kt'Zr'Kt'Rtl Technophiles",
@@ -309,27 +975,575 @@
         },
         {
             "name": "Unity",
-            "id": "base-unity"
+            "id": "base-unity",
+            "unique-cards": [
+                {
+                    "name": "Adamantine Synthesis",
+                    "upgrade-name": "Programmable Pseudomatter",
+                    "converters": [
+                        {
+                            "inputs": "2X",
+                            "outputs": ["1U1g", "1s"]
+                        }
+                    ],
+                    "upgrade-cards": ["1at", "1ci"]
+                },
+                {
+                    "name": "Adaptive Fabrication",
+                    "upgrade-name": "Predictive Fabrication",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1x1X1s", "1a"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "3s1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["1nt"]
+                },
+                {
+                    "name": "Explorer Collection",
+                    "upgrade-name": "Gravity Sunlens Sensor Array",
+                    "converters": [
+                        {
+                            "inputs": "3x",
+                            "outputs": ["2s1K1b", "1X"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2X1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2aa"]
+                },
+                {
+                    "name": "Bézier",
+                    "upgrade-name": "Bézier",
+                    "converters": [
+                        {
+                            "inputs": "3a",
+                            "outputs": ["1X2x", "1X"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "3x1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2oc", "2ap"]
+                },
+                {
+                    "name": "Color Space",
+                    "upgrade-name": "Color Space",
+                    "converters": [
+                        {
+                            "inputs": "2X",
+                            "outputs": ["1X2x", "1X"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "2X1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2cs"]
+                },
+                {
+                    "name": "Fractal Symmetry",
+                    "upgrade-name": "Fractal Symmetry",
+                    "converters": [
+                        {
+                            "inputs": "2x1X",
+                            "outputs": ["1X1U", "1X1x"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "2x1X1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2sc", "2hm"]
+                },
+                {
+                    "name": "Limit",
+                    "upgrade-name": "Limit",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1X3x", "1x"]
+                        }
+                    ],
+                    "placement-converters": [
+                        {
+                            "inputs": "3X1p",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["1ut", "1qc"]
+                }
+            ]
         },
         {
             "name": "Deep Unity",
-            "id": "alt-unity"
+            "id": "alt-unity",
+            "unique-cards": [
+                {
+                    "name": "Reality Maintenance Division",
+                    "upgrade-name": "λf.(λx.f(x x))(λx.f(x x))",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1X1x", ""]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "5x",
+                            "outputs": ["", "1U1C1Y1g1b1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Circles",
+                    "upgrade-name": "Pattern",
+                    "converters": [
+                        {
+                            "inputs": "4w",
+                            "outputs": ["3w2b1g1s", "1Y1K-2b1g"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1U1w1b1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Conway's Life Spaceship",
+                    "upgrade-name": "Conway's Life Glider Gun",
+                    "converters": [
+                        {
+                            "inputs": "3Y",
+                            "upgrade-inputs": "-1Y",
+                            "outputs": ["2Y1K1w1b1s", "1g-1Y1w"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "2U",
+                            "outputs": ["", "1U1C2Y1w1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Coxeter diagram Poincaré disk",
+                    "upgrade-name": "Coxeter diagram for 120-cell",
+                    "converters": [
+                        {
+                            "inputs": "3K",
+                            "upgrade-inputs": "-1K",
+                            "outputs": ["2K1C1g1w1s", "1w-1K1g"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1U1b1g1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Dragon Curve",
+                    "upgrade-name": "Chaos",
+                    "converters": [
+                        {
+                            "inputs": "4b",
+                            "outputs": ["3b1C1Y1s", "1K-1C"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1U1b1g1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Purple lines",
+                    "upgrade-name": "Green lines",
+                    "converters": [
+                        {
+                            "inputs": "3C",
+                            "upgrade-inputs": "-1C",
+                            "outputs": ["2C1K1g1w1s", "1Y1b-1C1K1w"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "2U",
+                            "outputs": ["", "1U1Y1C1K1w1s"]
+                        }
+                    ]
+                },
+                {
+                    "name": "|G|≤84(g-1)",
+                    "upgrade-name": "∀x(x≠∅→∃y∈x(x∩y=∅))",
+                    "converters": [
+                        {
+                            "inputs": "4g",
+                            "outputs": ["1U3g1s", "2Y-1U"]
+                        },
+                        {
+                            "inputs": "",
+                            "upgrade-inputs": "1U",
+                            "outputs": ["", "1U1g1w1s"]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Yengii Society",
-            "id": "base-yengii"
+            "id": "base-yengii",
+            "unique-cards": [
+                {
+                    "name": "Choice of Paths",
+                    "upgrade-name": "Alien Decision Integration",
+                    "converters": [
+                        {
+                            "inputs": "2w1K",
+                            "outputs": ["1U2g", "2b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2C1o",
+                            "outputs": "1V" 
+                        }
+                    ]
+                },
+                {
+                    "name": "Empathy of Words",
+                    "upgrade-name": "Interspecies Diplomatic Demesne",
+                    "converters": [
+                        {
+                            "inputs": "2b1C",
+                            "outputs": ["2K2w", "1Y"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2g1j",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                {
+                    "name": "Innovation of Hands",
+                    "upgrade-name": "Cross-time Think Tank",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["2s1Y1g", "1g1w"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2K1d",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2aa"]
+                },
+                {
+                    "name": "Social Ecological Mutualism",
+                    "upgrade-name": "Mutualistic Alien Integration",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1C1b2s", "1g1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2ap"]
+                },
+                {
+                    "name": "Work of Mules",
+                    "upgrade-name": "Gravitic Assembly",
+                    "converters": [
+                        {
+                            "inputs": "2g1Y",
+                            "outputs": ["2s1C2b", "2w"]
+                        }
+                    ],
+                    "upgrade-cards": ["2sc"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1U1i",
+                            "outputs": "1V"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "Yengii Jii",
-            "id": "alt-yengii"
+            "id": "alt-yengii",
+            "unique-cards": [
+                {
+                    "name": "Foresight of Paths",
+                    "upgrade-name": "Planning Towards the Other",
+                    "converters": [
+                        {
+                            "inputs": "1Y1C1K",
+                            "outputs": ["2b2w2s", "1g1s"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1Y1C1K1o",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2hm"]
+                },
+                {
+                    "name": "Outflying of Words",
+                    "upgrade-name": "Empowering the Outsider",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1K1s", "D1g1w"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2w1j",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["1ci"]
+                },
+                {
+                    "name": "Reimagining of Hands",
+                    "upgrade-name": "Crafting of the Inexpressible",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1Y2g1b", "1K1C"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1U1d",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["2oc"]
+                },
+                {
+                    "name": "Sympathy of Mules",
+                    "upgrade-name": "Supporting the Unknowable",
+                    "converters": [
+                        {
+                            "inputs": "1b1g1w",
+                            "outputs": ["1U1C", "1Y"]
+                        }
+                    ],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "2b1i",
+                            "outputs": "1V"
+                        }
+                    ],
+                    "upgrade-cards": ["1ut"]
+                }
+            ]
         },
         {
             "name": "Zeth Anocracy",
-            "id": "base-zeth"
+            "id": "base-zeth",
+            "unique-cards": [
+                {
+                    "name": "Cascading Deception",
+                    "upgrade-name": "Psychohistorical Deception",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1s2K", "1g"]
+                        },
+                        {
+                            "inputs": "1K",
+                            "outputs": ["2s", ""]
+                        }
+                    ],
+                    "upgrade-cards": ["1ut"]
+                },
+                {
+                    "name": "\"Envoys\"",
+                    "upgrade-name": "Zeth Diaspora",
+                    "converters": [
+                        {
+                            "inputs": "3w",
+                            "outputs": ["D1U1Y1K1b", "1VD1V-1Y1K1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["2cs"]
+                }
+            ]
         },
         {
             "name": "Charity Syndicate",
-            "id": "alt-zeth"
+            "id": "alt-zeth",
+            "unique-cards": [
+                {
+                    "name": "Hill Zeth",
+                    "upgrade-name": "Industrialized Craton",
+                    "converters": [
+                        {
+                            "inputs": "",
+                            "outputs": ["1K1g1b1s", "1b"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Independent Smugglers",
+                    "upgrade-name": "Gray Market Investments",
+                    "converters": [
+                        {
+                            "inputs": "2Y",
+                            "outputs": ["1g3s", "1K"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Reputation Brokers",
+                    "upgrade-name": "Plausible Culpability Distribution",
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["D2w1K1V", "D1g1b"]
+                        }
+                    ]
+                },
+                {
+                    "name": "Zeth Philosophers",
+                    "upgrade-name": "Memeticists",
+                    "converters": [
+                        {
+                            "inputs": "2w",
+                            "outputs": ["1K1b", "1Y"]
+                        }
+                    ]
+                }
+            ],
+            "distributed-cards": {
+                "caylion": {
+                    "name": "The Uprooted",
+                    "upgrade-name": "Galactic Explorers",
+                    "converters": [
+                        {
+                            "inputs": "1C",
+                            "outputs": ["1K1w1g1s", "1K1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["2hm", "2aa"]
+                },
+                "eniet": {
+                    "name": "Hadopelagic Exiles",
+                    "upgrade-name": "Abyssal Chorus",
+                    "converters": [
+                        {
+                            "inputs": "3w1g",
+                            "outputs": ["1U1CD1w1V", "D1C1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["2aa"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1o2C",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                "faderan": {
+                    "name": "Zealots",
+                    "upgrade-name": "Masterminds",
+                    "converters": [
+                        {
+                            "inputs": "3b",
+                            "outputs": ["1U2w1g", "1C1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["2oc"],
+                    "upgrade-converters": [
+                        {
+                            "inputs": "1i2w",
+                            "outputs": "1V"
+                        }
+                    ]
+                },
+                "imdirl": {
+                    "name": "Disaffected Artists",
+                    "upgrade-name": "Smuggling Guild",
+                    "converters": [
+                        {
+                            "inputs": "2K",
+                            "outputs": ["1U1Y1b1w", "1C"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1ge"]
+                },
+                "kjas": {
+                    "name": "Anosmia",
+                    "upgrade-name": "Spy Network",
+                    "converters": [
+                        {
+                            "inputs": "1Y",
+                            "outputs": ["1C1K1b1s", "1w1g"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1ut"]
+                },
+                "kit": {
+                    "name": "Loafers",
+                    "upgrade-name": "Gluttonous Ne'er-do-wells",
+                    "converters": [
+                        {
+                            "inputs": "1U",
+                            "outputs": ["1Y1K1w1b1g", "1V"]
+                        }
+                    ],
+                    "upgrade-cards": ["2is", "2ap"]
+                },
+                "unity": {
+                    "name": "Free Slices",
+                    "upgrade-name": "Rampant Agents",
+                    "converters": [
+                        {
+                            "inputs": "1x1X",
+                            "outputs": ["1X1K1x1g", "1x1w"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ur", "1ge"]
+                },
+                "yengii": {
+                    "name": "Iconoclasts",
+                    "upgrade-name": "Unbound Yengii",
+                    "converters": [
+                        {
+                            "inputs": "1s1C1K",
+                            "outputs": ["2Y2g1w1b", "1w1b"]
+                        }
+                    ],
+                    "upgrade-cards": ["1ge", "1qc"]
+                }
+            }
         }
     ],
     "tech-cards": {
