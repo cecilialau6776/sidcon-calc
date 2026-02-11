@@ -488,9 +488,41 @@ function toggle_converter(toggle_button_element, converter) {
 }
 
 /* Start card selector */
-card_selector.addEventListener('show.bs.modal', fill_add_card_modal);
 
 // card_selector.addEventListener('hide.bs.modal', event => { modal_card_contianer.innerHTML = ''; })
+
+function render_add_card_modal() {
+    add_card_dropdown_container.innerHTML = "";
+    let card_dropdown_starting = add_card_dropdown_container.appendChild(dropdown_card("Starting", "add-card-dropdown-starting", []));
+    let card_dropdown_t1 = add_card_dropdown_container.appendChild(dropdown_card("Tier 1", "add-card-dropdown-tier1", []));
+    let card_dropdown_t2 = add_card_dropdown_container.appendChild(dropdown_card("Tier 2", "add-card-dropdown-tier2", []));
+    let card_dropdown_t3 = add_card_dropdown_container.appendChild(dropdown_card("Tier 3", "add-card-dropdown-tier3", []));
+    let card_dropdown_misc = add_card_dropdown_container.appendChild(dropdown_card("Misc", "add-card-dropdown-misc", []));
+    card_dropdown_starting = card_dropdown_starting.children[1].children[0];
+    card_dropdown_t1 = card_dropdown_t1.children[1].children[0];
+    card_dropdown_t2 = card_dropdown_t2.children[1].children[0];
+    card_dropdown_t3 = card_dropdown_t3.children[1].children[0];
+    card_dropdown_misc = card_dropdown_misc.children[1].children[0];
+    
+    for (let [faction_id, faction_data] of Object.entries(all_cards)) {
+        for (const key of ["tech_cards", "unique_cards", "starting_cards"]) {
+            if (!(key in faction_data)) {
+                continue;
+            }
+            for (let [card_id, card] of Object.entries(faction_data[key])) {
+                let dropdown_el = get_converter_dropdown(faction_id, card_id, "add-");
+                const card_name_suffixes = card.converters.length > 1;
+                card.converters.forEach((converter, index) => {
+                    if (converter.owned) {
+                        return;
+                    }
+                    const card_name = card_name_suffixes ? `${card.name} ${String.fromCharCode(65 + index)}` : card.name;
+                    dropdown_el.appendChild(create_card_element(faction_id, card_id, card_name, converter));
+                });
+            }
+        }
+    }
+}
 
 function fill_add_card_modal() {
     let curr_faction = add_card_faction_select.value;
@@ -559,7 +591,7 @@ function toggle_net() {
     calc_net = !calc_net;
 }
 
-function get_converter_dropdown(faction_id, card_id) {
+function get_converter_dropdown(faction_id, card_id, dropdown_prefix = "") {
     if (faction_id != faction_select.value) {
         return card_dropdown_misc;
     }
@@ -567,7 +599,7 @@ function get_converter_dropdown(faction_id, card_id) {
         return card_dropdown_starting;
     }
     const tier = Array.from(card_id)[0];
-    return document.getElementById(`card_dropdown_tier${tier}`)
+    return document.getElementById(`${dropdown_prefix}card_dropdown_tier${tier}`)
 }
 
 function render_cards() {
@@ -612,6 +644,7 @@ function main() {
     create_starting_converters();
     net_gain_toggle.onclick = toggle_net;
     update_score();
+    card_selector.addEventListener('show.bs.modal', render_add_card_modal);
     // let c = Object.entries(data[faction_select.value].tech_cards)[0];
     // card_dropdown_container.appendChild(card_dropdown("chom", "chom-collapse", "no_data"));
 }
