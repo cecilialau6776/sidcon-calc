@@ -11,7 +11,7 @@
         <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
         <link rel="stylesheet" href="style.css">
     </head>
-
+    <select class="form-select"></select>
     <body>
         <br>
         <div class="container mt-1 mb-1">
@@ -166,19 +166,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <form class="row">
+                        <div class="col input-group">
+                            <label for="add-card-faction-select" class="input-group-text">Faction:</label>
+                            <select class="form-select faction-select" id="add-card-faction-select"></select>
+                        </div>
+                    </form>
                     <div class="container" id="add-card-dropdown-container">
-                        <form class="row">
-                            <div class="col input-group">
-                                <label for="add-card-faction-select" class="input-group-text">Faction:</label>
-                                <select class="form-select faction-select" id="add-card-faction-select"></select>
-                            </div>
-                        </form>
                     </div>
                     <button class="btn btn-info" type="button" id="net-gain-toggle">Calculate Net Resources</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-primary" id="add-card-confirm">Add</button>
                 </div>
             </div>
 

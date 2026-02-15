@@ -21,7 +21,7 @@
     border-width: .3rem;
 }
 
-.running {
+.running, .selected-for-add {
     border-color: var(--bs-success) !important;
     border-width: .25rem;
     opacity: 90%;
