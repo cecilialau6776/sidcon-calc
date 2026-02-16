@@ -430,7 +430,7 @@ function get_card(card_info) {
 }
 
 function get_converter(converter_info) {
-    return get_card(card_info).converters[card_info.converter_idx]
+    return get_card(converter_info).converters[converter_info.converter_idx]
 }
 
 function converter_id(converter_info) {
@@ -457,6 +457,8 @@ function toggle_add_card(select_button, path) {
 
 function create_owned_card_footer(converter_info) {
     let id = converter_id(converter_info);
+    let card = get_card(converter_info);
+    let converter = get_converter(converter_info);
 
     let card_footer_el = document.createElement("div");
     card_footer_el.classList.add("card-footer");
@@ -464,13 +466,13 @@ function create_owned_card_footer(converter_info) {
     let toggle_button = document.createElement("button");
     toggle_button.id = `toggle-${id}`;
     toggle_button.classList.add("btn", "btn-light", "float-end");
-    toggle_button.innerText = "Mark Running";
+    toggle_button.innerText = converter.running ? "Unmark Running" : "Mark Running";
     toggle_button.addEventListener("click", (ev) => {toggle_converter(ev.target, converter_info)});
     card_footer_el.appendChild(toggle_button);
     let upgrade_button = document.createElement("button");
     upgrade_button.classList.add("btn", "btn-light", "float-start");
     upgrade_button.id = `upgrade-${id}`;
-    upgrade_button.innerText = "Upgrade";
+    upgrade_button.innerText = card.upgraded ? "Downgrade" : "Upgrade";
     upgrade_button.addEventListener("click", () => {toggle_upgrade(converter_info)});
     upgrade_button.setAttribute('card-id', converter_info.card_id);
     card_footer_el.appendChild(upgrade_button);
@@ -509,9 +511,9 @@ function create_add_card_footer(converter_info, defaultTtl) {
     return card_footer_el;
 }
 
-function create_card_element(converter_info, name, converter, card_footer_el) {
-    const input = converter.input;
-    const output = converter.output;
+function create_card_element(converter_info, name, upgraded, converter, card_footer_el) {
+    const input = upgraded ? converter.upgrade_input : converter.input;
+    const output = upgraded ? converter.upgrade_output : converter.output;
     const id = converter_id(converter_info);
     let card_el_wrapper = document.createElement("div");
     card_el_wrapper.classList.add("col");
@@ -528,6 +530,7 @@ function create_card_element(converter_info, name, converter, card_footer_el) {
     card_header_el.innerHTML = `<span class="converter-name" id="card-name-${id}">${name}</span>`;
     let card_body_el = document.createElement("div");
     card_body_el.classList.add("card-body");
+    card_body_el.id = `converter-${id}`;
     card_body_el.innerHTML = converter_html(input, output);
 
     card_el.appendChild(card_header_el);
@@ -538,21 +541,30 @@ function create_card_element(converter_info, name, converter, card_footer_el) {
     return card_el_wrapper;
 }
 
-function toggle_upgrade(i) {
-    let u_state = !active_cards[i].upgraded;
-    active_cards[i].upgraded = u_state;
-    let data = active_cards[i].data;
-    let c_name = document.getElementById(`card-name-${i}`);
-    let c_upgrade = document.getElementById(`upgrade-${i}`);
-    let c_display = document.getElementById(`converter-${i}`);
-    c_upgrade.innerText = u_state ? "Downgrade" : "Upgrade";
-    c_name.innerText = u_state ? data.upgrade_name : data.name;
-    c_display.innerHTML = converter_html(
-        u_state ? data.upgrade_input : data.input,
-        u_state ? data.upgrade_output : data.output
-    );
+function isInputsEmpty(inputs) {
+    return isEmptyObject(inputs.owned) && isEmptyObject(inputs.donations);
+}
 
-    if (active_cards[i].running) {
+function toggle_upgrade(card_info) {
+    const card = get_card(card_info);
+    const u_state = !card.upgraded;
+    card.upgraded = u_state;
+
+    if(card.converters.length > 1) {
+        let is_owned = false;
+        for(let i = 0; i < card.converters.length; i++) {
+            const converter = card.converters[i];
+            if(converter.owned) is_owned = true;
+            
+            if(isInputsEmpty(converter.input) && (is_owned || !u_state)) {
+                converter.owned = u_state;
+            }
+        }
+    }
+
+    render_cards();
+
+    if(card.converters.some(c => c.running)) {
         update_score();
     }
 }
@@ -616,15 +628,16 @@ function render_add_card_modal() {
                 if (converter.owned) {
                     return;
                 }
-                const card_name = card_name_suffixes ? `${card.name} ${String.fromCharCode(65 + index)}` : card.name;
-                const card_footer_el = create_add_card_footer(curr_faction, key, card_id, index);
+                const base_name = card.upgraded ? card['upgrade-name'] : card.name;
+                const card_name = card_name_suffixes ? `${base_name} ${String.fromCharCode(65 + index)}` : base_name;
                 const converter_info = {
                     faction_id: curr_faction,
                     card_category: key,
                     card_id: card_id,
                     converter_idx: index
                 };
-                dropdown_el.children[0].appendChild(create_card_element(converter_info, card_name, converter, card_footer_el));
+                const card_footer_el = create_add_card_footer(converter_info);
+                dropdown_el.children[0].appendChild(create_card_element(converter_info, card_name, card.upgraded, converter, card_footer_el));
             });
         }
     }
@@ -724,7 +737,8 @@ function render_cards() {
                     if (!converter.owned) {
                         return;
                     }
-                    const card_name = card_name_suffixes ? `${card.name} ${String.fromCharCode(65 + index)}` : card.name;
+                    const base_name = card.upgraded ? card['upgrade-name'] : card.name;
+                    const card_name = card_name_suffixes ? `${base_name} ${String.fromCharCode(65 + index)}` : base_name;
                     const converter_info = {
                         faction_id: faction_id,
                         card_category: key,
@@ -732,7 +746,7 @@ function render_cards() {
                         converter_idx: index
                     };
                     const card_footer_el = create_owned_card_footer(converter_info);
-                    dropdown_el.children[0].appendChild(create_card_element(converter_info, card_name, converter, card_footer_el));
+                    dropdown_el.children[0].appendChild(create_card_element(converter_info, card_name, card.upgraded, converter, card_footer_el));
                 });
             }
         }
