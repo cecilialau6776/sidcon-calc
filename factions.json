@@ -996,7 +996,7 @@
                     "converters": [
                         {
                             "inputs": "",
-                            "outputs": ["1x1X1s", "1a"]
+                            "outputs": ["1x1X1s", "1x"]
                         }
                     ],
                     "upgrade-converters": [
