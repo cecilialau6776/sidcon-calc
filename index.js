@@ -556,7 +556,7 @@ function toggle_upgrade(card_info) {
             const converter = card.converters[i];
             if(converter.owned) is_owned = true;
             
-            if(isInputsEmpty(converter.input) && (is_owned || !u_state)) {
+            if(isInputsEmpty(converter.input) && (is_owned || !u_state) && i > 0) {
                 converter.owned = u_state;
             }
         }
