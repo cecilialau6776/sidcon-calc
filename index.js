@@ -483,7 +483,7 @@ function create_add_card_footer(converter_info, defaultTtl) {
     let card_footer_el = document.createElement("div");
     card_footer_el.classList.add("card-footer", "d-flex", "flex-row");
 
-    const path = `${converter_info.faction_id}/${converter_info.card_category}/${converter_info.card_id}/${converter_info.converter_index}`;
+    const path = `${converter_info.faction_id}/${converter_info.card_category}/${converter_info.card_id}/${converter_info.converter_idx}`;
 
     let ttl_select = document.createElement("select");
     ttl_select.id = `${path}-ttl`;
@@ -625,7 +625,7 @@ function render_add_card_modal() {
                 if (converter.owned) {
                     return;
                 }
-                const base_name = card.upgraded ? card['upgrade-name'] : card.name;
+                const base_name = card.upgraded ? card.upgrade_name : card.name;
                 const card_name = card_name_suffixes ? `${base_name} ${String.fromCharCode(65 + index)}` : base_name;
                 const converter_info = {
                     faction_id: curr_faction,
@@ -734,7 +734,7 @@ function render_cards() {
                     if (!converter.owned) {
                         return;
                     }
-                    const base_name = card.upgraded ? card['upgrade-name'] : card.name;
+                    const base_name = card.upgraded ? card.upgrade_name : card.name;
                     const card_name = card_name_suffixes ? `${base_name} ${String.fromCharCode(65 + index)}` : base_name;
                     const converter_info = {
                         faction_id: faction_id,
