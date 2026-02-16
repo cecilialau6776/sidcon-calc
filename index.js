@@ -425,6 +425,23 @@ function converter_html(input, output) {
     }
 }
 
+function get_card(card_info) {
+    return all_cards[card_info.faction_id][card_info.card_category][card_info.card_id];
+}
+
+function get_converter(converter_info) {
+    return get_card(card_info).converters[card_info.converter_idx]
+}
+
+function converter_id(converter_info) {
+    let card = get_card(converter_info);
+    if(card.converters.length > 1) {
+        return `${converter_info.faction_id}-${converter_info.card_id}-${converter_info.converter_idx}`;
+    } else {
+        return `${converter_info.faction_id}-${converter_info.card_id}`;
+    }
+}
+
 function toggle_add_card(select_button, path) {
     const card_element = select_button.parentElement.parentElement;
     if (cards_to_add.has(path)) {
@@ -438,30 +455,33 @@ function toggle_add_card(select_button, path) {
     }
 }
 
-function create_owned_card_footer(faction_id, card_category, card_id, converter_idx) {
+function create_owned_card_footer(converter_info) {
+    let id = converter_id(converter_info);
+
     let card_footer_el = document.createElement("div");
     card_footer_el.classList.add("card-footer");
 
     let toggle_button = document.createElement("button");
-    toggle_button.id = `toggle-${card_id}`;
+    toggle_button.id = `toggle-${id}`;
     toggle_button.classList.add("btn", "btn-light", "float-end");
     toggle_button.innerText = "Mark Running";
-    toggle_button.addEventListener("click", (ev) => {toggle_converter(ev.target, faction_id, card_category, card_id, converter_idx)});
+    toggle_button.addEventListener("click", (ev) => {toggle_converter(ev.target, converter_info)});
     card_footer_el.appendChild(toggle_button);
     let upgrade_button = document.createElement("button");
     upgrade_button.classList.add("btn", "btn-light", "float-start");
-    upgrade_button.id = `upgrade-${card_id}`;
+    upgrade_button.id = `upgrade-${id}`;
     upgrade_button.innerText = "Upgrade";
-    upgrade_button.addEventListener("click", () => {toggle_upgrade(card_id)});
+    upgrade_button.addEventListener("click", () => {toggle_upgrade(converter_info)});
+    upgrade_button.setAttribute('card-id', converter_info.card_id);
     card_footer_el.appendChild(upgrade_button);
     return card_footer_el;
 }
 
-function create_add_card_footer(faction_id, card_category, card_id, converter_index, defaultTtl) {
+function create_add_card_footer(converter_info, defaultTtl) {
     let card_footer_el = document.createElement("div");
     card_footer_el.classList.add("card-footer", "d-flex", "flex-row");
 
-    const path = `${faction_id}/${card_category}/${card_id}/${converter_index}`;
+    const path = `${converter_info.faction_id}/${converter_info.card_category}/${converter_info.card_id}/${converter_info.converter_index}`;
 
     let ttl_select = document.createElement("select");
     ttl_select.id = `${path}-ttl`;
@@ -489,9 +509,10 @@ function create_add_card_footer(faction_id, card_category, card_id, converter_in
     return card_footer_el;
 }
 
-function create_card_element(faction_id, id, name, converter, card_footer_el) {
+function create_card_element(converter_info, name, converter, card_footer_el) {
     const input = converter.input;
     const output = converter.output;
+    const id = converter_id(converter_info);
     let card_el_wrapper = document.createElement("div");
     card_el_wrapper.classList.add("col");
     let card_el = document.createElement("div");
@@ -499,7 +520,7 @@ function create_card_element(faction_id, id, name, converter, card_footer_el) {
     if(converter.running) {
         card_el.classList.add("running");
     }
-    card_el.setAttribute("data-faction", faction_id);
+    card_el.setAttribute("data-faction", converter_info.faction_id);
     card_el.id = `card-${id}`;
 
     let card_header_el = document.createElement("div");
@@ -541,9 +562,12 @@ function toggle_upgrade(i) {
  * 
  * Modifies active_cards to add or remove card objects 
  */
-function toggle_converter(toggle_button_element, faction_id, card_category, card_id, converter_idx) {
-    let card = all_cards[faction_id][card_category][card_id];
-    let converter = card.converters[converter_idx];
+function toggle_converter(toggle_button_element, converter_info) {
+    let card = get_card(converter_info);
+    let converter = card.converters[converter_info.converter_idx];
+    const faction_id = converter_info.faction_id;
+    const card_id = converter_info.card_id;
+
     let r_state = !converter.running;
     converter.running = r_state;
     let card_element = toggle_button_element.parentElement.parentElement;
@@ -594,7 +618,13 @@ function render_add_card_modal() {
                 }
                 const card_name = card_name_suffixes ? `${card.name} ${String.fromCharCode(65 + index)}` : card.name;
                 const card_footer_el = create_add_card_footer(curr_faction, key, card_id, index);
-                dropdown_el.children[0].appendChild(create_card_element(curr_faction, card_id, card_name, converter, card_footer_el));
+                const converter_info = {
+                    faction_id: curr_faction,
+                    card_category: key,
+                    card_id: card_id,
+                    converter_idx: index
+                };
+                dropdown_el.children[0].appendChild(create_card_element(converter_info, card_name, converter, card_footer_el));
             });
         }
     }
@@ -626,14 +656,15 @@ function dropdown_card(title, id, cards, collapsed) {
     let card_container = card_body_element.appendChild(document.createElement("div"));
     card_container.classList.add("row", "row-cols-lg-3", "row-cols-md-2", "row-cols-sm-1", "row-cols-1", "g-2");
 
-    for (let [id, card_data] of cards) {
-        const card_name_suffixes = card_data.converters.length > 1;
-        card_data.converters.forEach((converter, index) => {
-            const card_name = card_name_suffixes ? `${card_data.name} ${String.fromCharCode(65 + index)}` : card_data.name;
-            const card_footer_el = create_owned_card_footer(id);
-            card_container.appendChild(create_card_element(id, card_name, converter.input, converter.output, card_footer_el));
-        });
-    }
+    // for (let [id, card_data] of cards) {
+    //     const card_name_suffixes = card_data.converters.length > 1;
+    //     card_data.converters.forEach((converter, index) => {
+    //         const card_name = card_name_suffixes ? `${card_data.name} ${String.fromCharCode(65 + index)}` : card_data.name;
+    //
+    //         const card_footer_el = create_owned_card_footer(id);
+    //         card_container.appendChild(create_card_element(id, card_name, converter.input, converter.output, card_footer_el));
+    //     });
+    // }
 
     let card_element = document.createElement("div");
     card_element.classList.add("row", "card", "card-dropdown");
@@ -694,8 +725,14 @@ function render_cards() {
                         return;
                     }
                     const card_name = card_name_suffixes ? `${card.name} ${String.fromCharCode(65 + index)}` : card.name;
-                    const card_footer_el = create_owned_card_footer(faction_id, key, card_id, index);
-                    dropdown_el.children[0].appendChild(create_card_element(faction_id, card_id, card_name, converter, card_footer_el));
+                    const converter_info = {
+                        faction_id: faction_id,
+                        card_category: key,
+                        card_id: card_id,
+                        converter_idx: index
+                    };
+                    const card_footer_el = create_owned_card_footer(converter_info);
+                    dropdown_el.children[0].appendChild(create_card_element(converter_info, card_name, converter, card_footer_el));
                 });
             }
         }
