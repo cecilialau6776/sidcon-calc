@@ -1,9 +1,11 @@
 const white = document.getElementById("white-input");
 const brown = document.getElementById("brown-input");
 const green = document.getElementById("green-input");
+const wsmall = document.getElementById("wsmall-input");
 const black = document.getElementById("black-input");
 const blue = document.getElementById("blue-input");
 const yellow = document.getElementById("yellow-input");
+const wlarge = document.getElementById("wlarge-input");
 const ultratech = document.getElementById("ultratech-input");
 const ships = document.getElementById("ships-input");
 const vips = document.getElementById("vp-input");
@@ -143,9 +145,11 @@ function generate_rotting_totals() {
         white: parseInt(white.value),
         brown: parseInt(brown.value),
         green: parseInt(green.value),
+        wsmall: parseInt(wsmall.value),
         black: parseInt(black.value),
         yellow: parseInt(yellow.value),
         blue: parseInt(blue.value),
+        wlarge: parseInt(wlarge.value),
         ultratech: parseInt(ultratech.value),
         ships: parseInt(ships.value),
         vp: parseInt(vips.value)
@@ -157,9 +161,11 @@ function add_totals(t1, t2) {
         white: (t1.white ? t1.white : 0) + (t2.white ? t2.white : 0),
         brown: (t1.brown ? t1.brown : 0) + (t2.brown ? t2.brown : 0),
         green: (t1.green ? t1.green : 0) + (t2.green ? t2.green : 0),
+        wsmall: (t1.wsmall ? t1.wsmall : 0) + (t2.wsmall ? t2.wsmall : 0),
         black: (t1.black ? t1.black : 0) + (t2.black ? t2.black : 0),
         yellow: (t1.yellow ? t1.yellow : 0) + (t2.yellow ? t2.yellow : 0),
         blue: (t1.blue ? t1.blue : 0) + (t2.blue ? t2.blue : 0),
+        wlarge: (t1.wlarge ? t1.wlarge : 0) + (t2.wlarge ? t2.wlarge : 0),
         ultratech: (t1.ultratech ? t1.ultratech : 0) + (t2.ultratech ? t2.ultratech : 0),
         ships: (t1.ships ? t1.ships : 0) + (t2.ships ? t2.ships : 0),
         vp: (t1.vp ? t1.vp : 0) + (t2.vp ? t2.vp : 0)
@@ -171,9 +177,11 @@ function sub_totals(t1, t2) {
         white: (t1.white ? t1.white : 0) - (t2.white ? t2.white : 0),
         brown: (t1.brown ? t1.brown : 0) - (t2.brown ? t2.brown : 0),
         green: (t1.green ? t1.green : 0) - (t2.green ? t2.green : 0),
+        wsmall: (t1.wsmall ? t1.wsmall : 0) - (t2.wsmall ? t2.wsmall : 0),
         black: (t1.black ? t1.black : 0) - (t2.black ? t2.black : 0),
         yellow: (t1.yellow ? t1.yellow : 0) - (t2.yellow ? t2.yellow : 0),
         blue: (t1.blue ? t1.blue : 0) - (t2.blue ? t2.blue : 0),
+        wlarge: (t1.wlarge ? t1.wlarge : 0) - (t2.wlarge ? t2.wlarge : 0),
         ultratech: (t1.ultratech ? t1.ultratech : 0) - (t2.ultratech ? t2.ultratech : 0),
         ships: (t1.ships ? t1.ships : 0) - (t2.ships ? t2.ships : 0),
         vp: (t1.vp ? t1.vp : 0) - (t2.vp ? t2.vp : 0)
@@ -181,8 +189,8 @@ function sub_totals(t1, t2) {
 }
 
 function calculate_score(totals) {
-    let smalls = totals.white + totals.brown + totals.green + totals.ships;
-    let larges = totals.black + totals.blue + totals.yellow;
+    let smalls = totals.white + totals.brown + totals.green + totals.wsmall + totals.ships;
+    let larges = totals.black + totals.blue + totals.yellow + totals.wlarge;
     let vp = totals.vp + Math.floor(smalls / 6) + Math.floor(larges / 4) + Math.floor(totals.ultratech / 2);
     let partials = (smalls % 6) * 2 + (larges % 4) * 3 + (totals.ultratech % 2) * 6;
 
@@ -257,11 +265,11 @@ function update_score() {
 
 /* Start formatting */
 function format_smalls(total) {
-    return `${total.green ?? 0} green, ${total.brown ?? 0} brown, ${total.white ?? 0} white`;
+    return `${total.green ?? 0} green, ${total.brown ?? 0} brown, ${total.white ?? 0} white, ${total.wsmall ?? 0} wild small,`;
 }
 
 function format_larges(total) {
-    return `${total.blue ?? 0} blue, ${total.yellow ?? 0} yellow, ${total.black ?? 0} black`;
+    return `${total.blue ?? 0} blue, ${total.yellow ?? 0} yellow, ${total.black ?? 0} black, ${total.wlarge ?? 0} wild large,`;
 }
 
 function format_other(total) {
@@ -754,9 +762,11 @@ function main() {
     white.oninput = update_score;
     brown.oninput = update_score;
     green.oninput = update_score;
+    wsmall.oninput = update_score;
     black.oninput = update_score;
     blue.oninput = update_score;
     yellow.oninput = update_score;
+    wlarge.oninput = update_score;
     ultratech.oninput = update_score;
     ships.oninput = update_score;
     vips.oninput = update_score;
