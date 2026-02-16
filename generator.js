@@ -262,6 +262,8 @@ for(let faction of data.factions) {
             card.converters = converters;
             card.upgrade_converters = upgrade_converters;
             card.placement_converters = placement_converters;
+            card.upgrade_name = card['upgrade-name'];
+            delete card['upgrade-name'];
             delete card['upgrade-converters'];
             delete card['placement-converters'];
 
