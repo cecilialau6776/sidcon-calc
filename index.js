@@ -467,7 +467,7 @@ function create_owned_card_footer(converter_info) {
     toggle_button.id = `toggle-${id}`;
     toggle_button.classList.add("btn", "btn-light", "float-end");
     toggle_button.innerText = converter.running ? "Unmark Running" : "Mark Running";
-    toggle_button.addEventListener("click", (ev) => {toggle_converter(ev.target, converter_info)});
+    toggle_button.addEventListener("click", (ev) => {toggle_converter(converter_info)});
     card_footer_el.appendChild(toggle_button);
     let upgrade_button = document.createElement("button");
     upgrade_button.classList.add("btn", "btn-light", "float-start");
@@ -574,7 +574,7 @@ function toggle_upgrade(card_info) {
  * 
  * Modifies active_cards to add or remove card objects 
  */
-function toggle_converter(toggle_button_element, converter_info) {
+function toggle_converter(converter_info) {
     let card = get_card(converter_info);
     let converter = card.converters[converter_info.converter_idx];
     const faction_id = converter_info.faction_id;
@@ -582,10 +582,7 @@ function toggle_converter(toggle_button_element, converter_info) {
 
     let r_state = !converter.running;
     converter.running = r_state;
-    let card_element = toggle_button_element.parentElement.parentElement;
-    toggle_button_element.innerText = r_state ? "Unmark Running" : "Mark Running";
     if (r_state) {
-        card_element.classList.add('running');
         if(!(faction_id in active_cards)) {
             active_cards[faction_id] = {};
         }
@@ -593,12 +590,12 @@ function toggle_converter(toggle_button_element, converter_info) {
             active_cards[faction_id][card_id] = card;
         }
     } else {
-        card_element.classList.remove('running');
         if(card.converters.filter(c => c.running).length == 0) {
             delete active_cards[faction_id][card_id];
         }
     }
 
+    render_cards();
     update_score();
 }
 
