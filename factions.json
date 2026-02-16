@@ -980,6 +980,7 @@
                 {
                     "name": "Adamantine Synthesis",
                     "upgrade-name": "Programmable Pseudomatter",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2X",
@@ -991,6 +992,7 @@
                 {
                     "name": "Adaptive Fabrication",
                     "upgrade-name": "Predictive Fabrication",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -1008,6 +1010,7 @@
                 {
                     "name": "Explorer Collection",
                     "upgrade-name": "Gravity Sunlens Sensor Array",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "3x",
@@ -1099,6 +1102,7 @@
                 {
                     "name": "Reality Maintenance Division",
                     "upgrade-name": "λf.(λx.f(x x))(λx.f(x x))",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -1213,6 +1217,7 @@
                 {
                     "name": "Choice of Paths",
                     "upgrade-name": "Alien Decision Integration",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2w1K",
@@ -1230,6 +1235,7 @@
                 {
                     "name": "Empathy of Words",
                     "upgrade-name": "Interspecies Diplomatic Demesne",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2b1C",
@@ -1247,6 +1253,7 @@
                 {
                     "name": "Innovation of Hands",
                     "upgrade-name": "Cross-time Think Tank",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1U",
@@ -1264,6 +1271,7 @@
                 {
                     "name": "Social Ecological Mutualism",
                     "upgrade-name": "Mutualistic Alien Integration",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -1275,6 +1283,7 @@
                 {
                     "name": "Work of Mules",
                     "upgrade-name": "Gravitic Assembly",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2g1Y",
@@ -1298,6 +1307,7 @@
                 {
                     "name": "Foresight of Paths",
                     "upgrade-name": "Planning Towards the Other",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1Y1C1K",
@@ -1315,6 +1325,7 @@
                 {
                     "name": "Outflying of Words",
                     "upgrade-name": "Empowering the Outsider",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -1332,6 +1343,7 @@
                 {
                     "name": "Reimagining of Hands",
                     "upgrade-name": "Crafting of the Inexpressible",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1U",
@@ -1349,6 +1361,7 @@
                 {
                     "name": "Sympathy of Mules",
                     "upgrade-name": "Supporting the Unknowable",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "1b1g1w",
@@ -1372,6 +1385,7 @@
                 {
                     "name": "Cascading Deception",
                     "upgrade-name": "Psychohistorical Deception",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -1387,6 +1401,7 @@
                 {
                     "name": "\"Envoys\"",
                     "upgrade-name": "Zeth Diaspora",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "3w",
@@ -1404,6 +1419,7 @@
                 {
                     "name": "Hill Zeth",
                     "upgrade-name": "Industrialized Craton",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -1414,6 +1430,7 @@
                 {
                     "name": "Independent Smugglers",
                     "upgrade-name": "Gray Market Investments",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2Y",
@@ -1424,6 +1441,7 @@
                 {
                     "name": "Reputation Brokers",
                     "upgrade-name": "Plausible Culpability Distribution",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2K",
@@ -1434,6 +1452,7 @@
                 {
                     "name": "Zeth Philosophers",
                     "upgrade-name": "Memeticists",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "2w",
