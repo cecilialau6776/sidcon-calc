@@ -281,6 +281,23 @@ let calc_net = false;
 
 function create_starting_converters() {
     let curr_faction = faction_select.value;
+
+
+    for (let [faction_id, faction_data] of Object.entries(all_cards)) {
+        for (const key of ["tech_cards", "unique_cards", "starting_cards"]) {
+            if (!(key in faction_data)) {
+                continue;
+            }
+            for (let [card_id, card] of Object.entries(faction_data[key])) {
+                for(let converter of card.converters) {
+                    converter.owned = false;
+                    converter.running = false;
+                }
+            }
+        }
+    }
+    active_cards = {};
+    
     if (!all_cards[curr_faction].starting_cards) {
         return;
     }
