@@ -23,15 +23,7 @@ let card_dropdown_t2;
 let card_dropdown_t3;
 let card_dropdown_misc;
 
-const gain_smalls = document.getElementById("gn-smalls");
-const gain_larges = document.getElementById("gn-larges");
-const gain_other = document.getElementById("gn-other");
-const net_smalls = document.getElementById("nt-smalls");
-const net_larges = document.getElementById("nt-larges");
-const net_other = document.getElementById("nt-other");
-const net_gain_toggle = document.getElementById("net-gain-toggle");
-const net_holder = document.getElementById("nt-net-holder");
-const gain_holder = document.getElementById("nt-gain-holder");
+const totals_holder = document.getElementById("totals-holder");
 
 let all_cards;
 // list of "path" to cards
@@ -57,6 +49,19 @@ const FILENAMES = {
     vp: "victory_point.png",
     ships: "ship.png",
 };
+const RESOURCES = [
+    "white",
+    "green",
+    "brown",
+    "wsmall",
+    "yellow",
+    "blue",
+    "black",
+    "wlarge",
+    "ultratech",
+    "vp",
+    "ships",
+];
 const CLASSNAMES = {
     white: "small-cube",
     green: "small-cube",
@@ -85,14 +90,14 @@ async function getData() {
         const unique_cards = ("unique_cards" in data) ? [...faction_data["unique_cards"]] : [];
         data["unique_cards"] = {};
         for (var i = 0; i < unique_cards.length; i++) {
-            const unique_card_id = `unique${i}`; 
+            const unique_card_id = `unique${i}`;
             data["unique_cards"][unique_card_id] = unique_cards[i];
         }
 
-        const starting_cards = ("starting_cards" in data) ? [...faction_data["starting_cards"]] : [] ;
+        const starting_cards = ("starting_cards" in data) ? [...faction_data["starting_cards"]] : [];
         data["starting_cards"] = {};
         for (var i = 0; i < starting_cards.length; i++) {
-            const starting_card_id = `starting${i}`; 
+            const starting_card_id = `starting${i}`;
             data["starting_cards"][starting_card_id] = starting_cards[i];
         }
 
@@ -216,8 +221,8 @@ function converter_inputs_to_totals(data, upgraded) {
 function generate_card_totals() {
     let totals = {}
     for (let [faction_id, cards] of Object.entries(active_cards)) {
-        for( let [card_id, card] of Object.entries(cards)) {
-            for( let converter of card.converters) {
+        for (let [card_id, card] of Object.entries(cards)) {
+            for (let converter of card.converters) {
                 if (converter.running) {
                     totals = add_totals(totals, converter_to_totals(converter, card.upgraded));
                 }
@@ -230,8 +235,8 @@ function generate_card_totals() {
 function count_card_inputs() {
     let totals = {}
     for (let [faction_id, cards] of Object.entries(active_cards)) {
-        for( let [card_id, card] of Object.entries(cards)) {
-            for( let converter of card.converters) {
+        for (let [card_id, card] of Object.entries(cards)) {
+            for (let converter of card.converters) {
                 if (converter.running) {
                     totals = add_totals(totals, converter_inputs_to_totals(converter, card.upgraded));
                 }
@@ -250,16 +255,10 @@ function update_score() {
 
     score_text.innerText = `Final Score: ${score.vp} + ${score.partial}/12`;
 
-    gain_smalls.innerText = format_smalls(total);
-    gain_larges.innerText = format_larges(total);
-    gain_other.innerText = format_other(total);
-
     let inputs = count_card_inputs();
     let net = sub_totals(total, inputs);
 
-    net_smalls.innerText = format_smalls(net);
-    net_larges.innerText = format_larges(net);
-    net_other.innerText = format_other(net);
+    totals_holder.innerHTML = `<table class="table text-center">${format_total_tr(total, "Gain:")}${format_total_tr(net, "Net:")}</table>`;
 }
 /* End calculations */
 
@@ -274,6 +273,24 @@ function format_larges(total) {
 
 function format_other(total) {
     return `${total.ultratech ?? 0} ultratech, ${total.ships ?? 0} ships, ${total.vp ?? 0} vp`;
+}
+
+function format_total_tr(total, header_text) {
+    const resources_html = RESOURCES.map((resource_name) => {
+        const classname = CLASSNAMES[resource_name];
+        const filename = "assets/icons/" + FILENAMES[resource_name];
+        const count = total[resource_name];
+        const color_class = count < 0 ? "text-danger" : count > 0 ? "text-success" : "";
+        return `
+        <td>
+        <span class="${color_class}">${count}</span>
+        <img class="centered ${classname}" src="${filename}" alt="${classname}" />
+        </td>`;
+    }).join("");
+
+    return `
+    <tr class="w-50"><th>${header_text}</th>${resources_html}</tr>
+    `;
 }
 /* End formatting */
 
@@ -460,7 +477,7 @@ function get_converter(converter_info) {
 
 function converter_id(converter_info) {
     let card = get_card(converter_info);
-    if(card.converters.length > 1) {
+    if (card.converters.length > 1) {
         return `${converter_info.faction_id}-${converter_info.card_id}-${converter_info.converter_idx}`;
     } else {
         return `${converter_info.faction_id}-${converter_info.card_id}`;
@@ -492,13 +509,13 @@ function create_owned_card_footer(converter_info) {
     toggle_button.id = `toggle-${id}`;
     toggle_button.classList.add("btn", "btn-light", "float-end");
     toggle_button.innerText = converter.running ? "Unmark Running" : "Mark Running";
-    toggle_button.addEventListener("click", (ev) => {toggle_converter(converter_info)});
+    toggle_button.addEventListener("click", (ev) => { toggle_converter(converter_info) });
     card_footer_el.appendChild(toggle_button);
     let upgrade_button = document.createElement("button");
     upgrade_button.classList.add("btn", "btn-light", "float-start");
     upgrade_button.id = `upgrade-${id}`;
     upgrade_button.innerText = card.upgraded ? "Downgrade" : "Upgrade";
-    upgrade_button.addEventListener("click", () => {toggle_upgrade(converter_info)});
+    upgrade_button.addEventListener("click", () => { toggle_upgrade(converter_info) });
     upgrade_button.setAttribute('card-id', converter_info.card_id);
     card_footer_el.appendChild(upgrade_button);
     return card_footer_el;
@@ -531,7 +548,7 @@ function create_add_card_footer(converter_info, defaultTtl) {
     select_button.classList.add("ms-auto", "btn", "btn-light");
     select_button.id = `${path}-select`;
     select_button.innerText = "Select";
-    select_button.addEventListener("click", (event) => {toggle_add_card(event.target, path)});
+    select_button.addEventListener("click", (event) => { toggle_add_card(event.target, path) });
     card_footer_el.appendChild(select_button);
     return card_footer_el;
 }
@@ -544,7 +561,7 @@ function create_card_element(converter_info, name, upgraded, converter, card_foo
     card_el_wrapper.classList.add("col");
     let card_el = document.createElement("div");
     card_el.classList.add("col", "card", "converter", "text-center");
-    if(converter.running) {
+    if (converter.running) {
         card_el.classList.add("running");
     }
     card_el.setAttribute("data-faction", converter_info.faction_id);
@@ -575,13 +592,13 @@ function toggle_upgrade(card_info) {
     const u_state = !card.upgraded;
     card.upgraded = u_state;
 
-    if(card.converters.length > 1) {
+    if (card.converters.length > 1) {
         let is_owned = false;
-        for(let i = 0; i < card.converters.length; i++) {
+        for (let i = 0; i < card.converters.length; i++) {
             const converter = card.converters[i];
-            if(converter.owned) is_owned = true;
-            
-            if(isInputsEmpty(converter.input) && (is_owned || !u_state) && i > 0) {
+            if (converter.owned) is_owned = true;
+
+            if (isInputsEmpty(converter.input) && (is_owned || !u_state) && i > 0) {
                 converter.owned = u_state;
             }
         }
@@ -589,7 +606,7 @@ function toggle_upgrade(card_info) {
 
     render_cards();
 
-    if(card.converters.some(c => c.running)) {
+    if (card.converters.some(c => c.running)) {
         update_score();
     }
 }
@@ -608,14 +625,14 @@ function toggle_converter(converter_info) {
     let r_state = !converter.running;
     converter.running = r_state;
     if (r_state) {
-        if(!(faction_id in active_cards)) {
+        if (!(faction_id in active_cards)) {
             active_cards[faction_id] = {};
         }
-        if(!Object.keys(active_cards[faction_id]).includes(card_id)) {
+        if (!Object.keys(active_cards[faction_id]).includes(card_id)) {
             active_cards[faction_id][card_id] = card;
         }
     } else {
-        if(card.converters.filter(c => c.running).length == 0) {
+        if (card.converters.filter(c => c.running).length == 0) {
             delete active_cards[faction_id][card_id];
         }
     }
@@ -637,7 +654,7 @@ function render_add_card_modal() {
     add_card_dropdown_container.appendChild(dropdown_card("Tier 2", "add-card-dropdown-tier2", [], false));
     add_card_dropdown_container.appendChild(dropdown_card("Tier 3", "add-card-dropdown-tier3", [], false));
     add_card_dropdown_container.appendChild(dropdown_card("Misc", "add-card-dropdown-misc", [], false));
-    
+
     const faction_data = all_cards[curr_faction];
     for (const key of ["tech_cards", "unique_cards", "starting_cards"]) {
         if (!(key in faction_data)) {
@@ -715,21 +732,6 @@ function dropdown_card(title, id, cards, collapsed) {
 }
 /* End Dropdowns */
 
-
-
-function toggle_net() {
-    if (calc_net) {
-        net_holder.hidden = true;
-        gain_holder.hidden = false;
-        net_gain_toggle.innerText = "Calculate Net Resources";
-    } else {
-        net_holder.hidden = false;
-        gain_holder.hidden = true;
-        net_gain_toggle.innerText = "Calculate Resource Counts";
-    }
-    calc_net = !calc_net;
-}
-
 function get_converter_dropdown(faction_select, faction_id, card_id, dropdown_prefix = "") {
     if (faction_id != faction_select.value || card_id.startsWith("unique")) {
         return document.getElementById(`${dropdown_prefix}card-dropdown-misc`);
@@ -776,22 +778,21 @@ function render_cards() {
 }
 
 function main() {
-    white.oninput = update_score;
-    brown.oninput = update_score;
-    green.oninput = update_score;
-    wsmall.oninput = update_score;
-    black.oninput = update_score;
-    blue.oninput = update_score;
-    yellow.oninput = update_score;
-    wlarge.oninput = update_score;
-    ultratech.oninput = update_score;
-    ships.oninput = update_score;
-    vips.oninput = update_score;
+    white.addEventListener("input", update_score);
+    brown.addEventListener("input", update_score);
+    green.addEventListener("input", update_score);
+    wsmall.addEventListener("input", update_score);
+    black.addEventListener("input", update_score);
+    blue.addEventListener("input", update_score);
+    yellow.addEventListener("input", update_score);
+    wlarge.addEventListener("input", update_score);
+    ultratech.addEventListener("input", update_score);
+    ships.addEventListener("input", update_score);
+    vips.addEventListener("input", update_score);
     create_faction_options();
     create_card_dropdowns();
     faction_select.addEventListener("input", create_starting_converters);
     create_starting_converters();
-    net_gain_toggle.onclick = toggle_net;
     update_score();
     card_selector.addEventListener('show.bs.modal', render_add_card_modal);
     document.getElementById("add-card-confirm").addEventListener('click', add_cards);

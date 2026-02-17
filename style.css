@@ -79,12 +79,16 @@ div.resource {
 .resource > .victory-point {
     height: 2.5em;
 }
-label > .large-cube {
+label > .large-cube,
+table .large-cube {
     height: 2em;
 }
 label > .small-cube,
 label > .ship,
-label > .victory-point {
+label > .victory-point,
+table .small-cube,
+table .ship,
+table .victory-point {
     height: 1.5em;
 }
 img.donation.large-cube {
@@ -139,3 +143,8 @@ form label:has(img) {
     margin-top: 1rem;
 }
 /* end collapses */
+
+@media (max-width: 768px) {
+    tr { display: block; float: left; }
+    th, td { display: block; }
+}
