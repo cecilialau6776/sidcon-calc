@@ -325,7 +325,7 @@ function create_card_dropdowns() {
     add_card_element.classList.add("row");
     add_card_element.setAttribute("data-bs-toggle", "modal");
     add_card_element.setAttribute("data-bs-target", "#card_selector");
-    add_card_element.innerHTML = `<div class="col card" id="add-card"><h2>+ Add Converter(s)</h2></div>`;
+    add_card_element.innerHTML = `<div class="col card" id="add-card"><h2 class="text-center">Add Converter(s)</h2></div>`;
 }
 
 function isEmptyObject(obj) {
