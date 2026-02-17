@@ -258,7 +258,7 @@ function update_score() {
     let inputs = count_card_inputs();
     let net = sub_totals(total, inputs);
 
-    totals_holder.innerHTML = `<table class="table text-center">${format_total_tr(total, "Gain:")}${format_total_tr(net, "Net:")}</table>`;
+    totals_holder.innerHTML = `<table class="table text-center">${format_total_tr(cards, "Gain:")}${format_total_tr(net, "Net:")}</table>`;
 }
 /* End calculations */
 
