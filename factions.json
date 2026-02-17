@@ -591,6 +591,7 @@
                 {
                     "name": "Asteroid Mining",
                     "upgrade-name": "Asteroid Construction Yards",
+                    "starting": true,
                     "converters": [
                         {
                             "inputs": "",
@@ -606,7 +607,7 @@
                 },
                 {
                     "name": "Faderan Relic Caches",
-                    "upgrade-name": "Relic REsynthesis",
+                    "upgrade-name": "Relic Resynthesis",
                     "starting": true,
                     "converters": [
                         {
@@ -777,7 +778,7 @@
                         },
                         {
                             "inputs": "",
-                            "upgraded-inputs": "3Y",
+                            "upgrade-inputs": "3Y",
                             "outputs": ["", "1C1b2g2w2s"]
                         }
                     ],
@@ -870,7 +871,7 @@
                     "converters": [
                         {
                             "inputs": "3Y",
-                            "outputs": ["D1g1b1C1U2S", "D1b1C1s"]
+                            "outputs": ["D1g1b1C1U2s", "D1b1C1s"]
                         }
                     ],
                     "upgrade-cards": ["2cs", "2hm", "2ap"]
@@ -881,7 +882,7 @@
                     "starting": true,
                     "converters": [
                         {
-                            "inputs": "3B",
+                            "inputs": "3b",
                             "outputs": ["2sD1w1g1C", "D1g1w"]
                         }
                     ],
@@ -1405,7 +1406,7 @@
                     "converters": [
                         {
                             "inputs": "3w",
-                            "outputs": ["D1U1Y1K1b", "1VD1V-1Y1K1b"]
+                            "outputs": ["D1U1Y1C1b", "1VD1V-1Y1C1b"]
                         }
                     ],
                     "upgrade-cards": ["2cs"]
