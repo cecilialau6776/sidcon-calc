@@ -835,7 +835,7 @@
                     "converters": [
                         {
                             "inputs": "D2x",
-                            "outputs": ["D1CY1K", "D1g1w1K"]
+                            "outputs": ["D1C1Y1K", "D1g1w1K"]
                         }
                     ],
                     "upgrade-cards": ["2is", "2sc", "2oc"]
