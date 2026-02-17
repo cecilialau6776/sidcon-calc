@@ -68,15 +68,24 @@ div.resource span.centered {
     transform: translate(-50%, -50%);
 }
 
-/* div.small-cube,div.large-cube { */
 div.resource {
     position: relative;
 }
-.large-cube {
+.resource > .large-cube {
     height: 3em;
 }
-.small-cube,.ship,.victory-point {
+.resource > .small-cube,
+.resource > .ship,
+.resource > .victory-point {
     height: 2.5em;
+}
+label > .large-cube {
+    height: 2em;
+}
+label > .small-cube,
+label > .ship,
+label > .victory-point {
+    height: 1.5em;
 }
 img.donation.large-cube {
     height: calc(3em + 5px);
@@ -98,6 +107,10 @@ img.donation.ship {
     cursor: pointer;
     min-height: 10rem;
     margin-top: 1rem;
+}
+
+form label:has(img) {
+    height: 3em;
 }
 
 /* start collapses */

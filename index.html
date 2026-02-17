@@ -33,7 +33,7 @@
 
         <hr>
 
-        <div class="container" id="card-dropdown-container">
+        <div class="container px-4" id="card-dropdown-container">
             <div class="row card card-dropdown">
                 <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#card-dropdown-starting" aria-expanded="false" aria-controls="collapse-card-dropdown-starting">
                     <span class="float-start"><strong>Starting</strong></span>
@@ -93,54 +93,98 @@
                 <div class="row text-center">
                     <h4>Current Resources</h4>
                 </div>
-                <div class="row">
-                    <div class="col input-group">
-                        <label for="white-input" class="input-group-text">White:</label>
-                        <input class="form-control" id="white-input" type="number" value=0 />
+                <div class="row mb-2">
+                    <div class="col col-6 col-md-3">
+                        <div class="input-group">
+                            <label for="white-input" class="input-group-text">
+                                <img src="assets/icons/white.png" alt="" class="centered small-cube-text small-cube">
+                            </label>
+                            <input class="form-control" id="white-input" type="number" value=0 />
+                        </div>
                     </div>
-                    <div class="col input-group">
-                        <label for="brown-input" class="input-group-text">Brown:</label>
-                        <input class="form-control" id="brown-input" type="number" value=0 />
+                    <div class="col col-6 col-md-3">
+                        <div class="input-group">
+                            <label for="brown-input" class="input-group-text">
+                                <img src="assets/icons/brown.png" alt="" class="centered small-cube-text small-cube">
+                            </label>
+                            <input class="form-control" id="brown-input" type="number" value=0 />
+                        </div>
                     </div>
-                    <div class="col input-group">
-                        <label for="green-input" class="input-group-text">Green:</label>
-                        <input class="form-control" id="green-input" type="number" value=0 />
+                    <div class="col col-6 col-md-3">
+                        <div class="input-group">
+                            <label for="green-input" class="input-group-text">
+                                <img src="assets/icons/green.png" alt="" class="centered small-cube-text small-cube">
+                            </label>
+                            <input class="form-control" id="green-input" type="number" value=0 />
+                        </div>
                     </div>
-                    <div class="col input-group">
-                        <label for="wsmall-input" class="input-group-text">Wild Small:</label>
-                        <input class="form-control" id="wsmall-input" type="number" value=0 />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col input-group">
-                        <label for="black-input" class="input-group-text">Black:</label>
-                        <input class="form-control" id="black-input" type="number" value=0 />
-                    </div>
-                    <div class="col input-group">
-                        <label for="blue-input" class="input-group-text">Blue:</label>
-                        <input class="form-control" id="blue-input" type="number" value=0 />
-                    </div>
-                    <div class="col input-group">
-                        <label for="yellow-input" class="input-group-text">Yellow:</label>
-                        <input class="form-control" id="yellow-input" type="number" value=0 />
-                    </div>
-                    <div class="col input-group">
-                        <label for="wlarge-input" class="input-group-text">Wild Large:</label>
-                        <input class="form-control" id="wlarge-input" type="number" value=0 />
+                    <div class="col col-6 col-md-3">
+                        <div class="input-group">
+                            <label for="wsmall-input" class="input-group-text">
+                                <img src="assets/icons/small_grey.png" alt="" class="centered small-cube-text small-cube">
+                            </label>
+                            <input class="form-control" id="wsmall-input" type="number" value=0 />
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col input-group">
-                        <label for="ultratech-input" class="input-group-text">Ultratech:</label>
-                        <input class="form-control" id="ultratech-input" type="number" value=0 />
+                <div class="row mb-2">
+                    <div class="col col-6 col-md-3">
+                        <div class="input-group">
+                            <label for="black-input" class="input-group-text">
+                                <img src="assets/icons/black.png" alt="" class="centered large-cube-text large-cube">
+                            </label>
+                            <input class="form-control" id="black-input" type="number" value=0 />
+                        </div>
                     </div>
-                    <div class="col input-group">
-                        <label for="ships-input" class="input-group-text">Ships:</label>
-                        <input class="form-control" id="ships-input" type="number" value=0 />
+                    <div class="col col-6 col-md-3">
+                        <div class="input-group">
+                            <label for="blue-input" class="input-group-text">
+                                <img src="assets/icons/blue.png" alt="" class="centered large-cube-text large-cube">
+                            </label>
+                            <input class="form-control" id="blue-input" type="number" value=0 />
+                        </div>
                     </div>
-                    <div class="col input-group">
-                        <label for="vp-input" class="input-group-text">VP:</label>
-                        <input class="form-control" id="vp-input" type="number" value=0 />
+                    <div class="col col-6 col-md-3">
+                        <div class="input-group">
+                            <label for="yellow-input" class="input-group-text">
+                                <img src="assets/icons/yellow.png" alt="" class="centered large-cube-text large-cube">
+                            </label>
+                            <input class="form-control" id="yellow-input" type="number" value=0 />
+                        </div>
+                    </div>
+                    <div class="col col-6 col-md-3">
+                        <div class="input-group">
+                            <label for="wlarge-input" class="input-group-text">
+                                <img src="assets/icons/large_grey.png" alt="" class="centered large-cube-text large-cube">
+                            </label>
+                            <input class="form-control" id="wlarge-input" type="number" value=0 />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col col-4">
+                        <div class="input-group">
+                            <label for="ultratech-input" class="input-group-text">
+                                <img class="centered large-cube" src="assets/icons/ultratech.png" alt="">
+                            </label>
+                            <input class="form-control" id="ultratech-input" type="number" value=0 />
+                        </div>
+                    </div>
+                    <div class="col col-4">
+                        <div class="input-group">
+                            <label for="ships-input" class="input-group-text">
+                                <img class="centered ship" src="assets/icons/ship.png" alt="">
+                            </label>
+                            <input class="form-control" id="ships-input" type="number" value=0 />
+                        </div>
+                    </div>
+                    <div class="col col-4">
+                        <div class="input-group">
+                            <label for="vp-input" class="input-group-text">
+                                <img class="centered victory-point" src="assets/icons/victory_point.png" alt="">
+                            </label>
+                            <input class="form-control" id="vp-input" type="number" value=0 />
+                        </div>
                     </div>
                 </div>
                 <br>
