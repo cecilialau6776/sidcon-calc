@@ -161,6 +161,22 @@ function generate_rotting_totals() {
     };
 }
 
+function empty_totals() {
+    return {
+        white: 0,
+        brown: 0,
+        green: 0,
+        wsmall: 0,
+        black: 0,
+        yellow: 0,
+        blue: 0,
+        wlarge: 0,
+        ultratech: 0,
+        ships: 0,
+        vp: 0
+    };
+}
+
 function add_totals(t1, t2) {
     return {
         white: (t1.white ? t1.white : 0) + (t2.white ? t2.white : 0),
@@ -219,7 +235,7 @@ function converter_inputs_to_totals(data, upgraded) {
 }
 
 function generate_card_totals() {
-    let totals = {}
+    let totals = empty_totals();
     for (let [faction_id, cards] of Object.entries(active_cards)) {
         for (let [card_id, card] of Object.entries(cards)) {
             for (let converter of card.converters) {
