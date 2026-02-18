@@ -737,10 +737,10 @@ function dropdown_card(title, id, cards, collapsed) {
     let card_element = document.createElement("div");
     card_element.classList.add("row", "card", "card-dropdown");
     card_element.innerHTML = `
-    <div class="card-header ${collapsed ? "collapsed" : ""}" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="collapse-${id}">
+    <div class="card-header ${collapsed ? "collapsed" : ""} d-flex " data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="collapse-${id}">
             <span class="float-start"><strong>${title}</strong></span>
-            <span class="float-end fa-solid fa-chevron-right">🞂</span>
-            <span class="float-end fa-solid fa-chevron-down">🞃</span>
+            <i class="ms-auto align-content-center fa-solid fa-chevron-right"></i>
+            <i class="ms-auto align-content-center fa-solid fa-chevron-down"></i>
         </div>
     `;
     card_element.appendChild(card_body_element);
