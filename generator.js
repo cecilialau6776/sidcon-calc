@@ -87,6 +87,7 @@ function parse_resources(str) {
                     break;
                 case 'a':
                     curr.asmall = negative * count;
+                    break;
                 case 'Y':
                     curr.yellow = negative * count;
                     break;
