@@ -284,9 +284,9 @@ function count_card_inputs() {
 function update_score() {
     let rotting = generate_rotting_totals();
     let cards = generate_card_totals();
-    let total = add_totals(rotting, cards);
+    let total =  add_totals(rotting, cards);
 
-    let score = calculate_score(total);
+    let score = calculate_score(sum_owned_donations(total));
 
     score_text.innerText = `Final Score: ${score.vp} + ${score.partial}/12`;
 
