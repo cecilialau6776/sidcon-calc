@@ -147,65 +147,84 @@ async function getData() {
 /* Start calculations */
 function generate_rotting_totals() {
     return {
-        white: parseInt(white.value),
-        brown: parseInt(brown.value),
-        green: parseInt(green.value),
-        wsmall: parseInt(wsmall.value),
-        black: parseInt(black.value),
-        yellow: parseInt(yellow.value),
-        blue: parseInt(blue.value),
-        wlarge: parseInt(wlarge.value),
-        ultratech: parseInt(ultratech.value),
-        ships: parseInt(ships.value),
-        vp: parseInt(vips.value)
+        owned: {
+            white: parseInt(white.value),
+            brown: parseInt(brown.value),
+            green: parseInt(green.value),
+            wsmall: parseInt(wsmall.value),
+            black: parseInt(black.value),
+            yellow: parseInt(yellow.value),
+            blue: parseInt(blue.value),
+            wlarge: parseInt(wlarge.value),
+            ultratech: parseInt(ultratech.value),
+            ships: parseInt(ships.value),
+            vp: parseInt(vips.value)
+        },
+        donations: {},
     };
 }
 
 function empty_totals() {
+    const owned = RESOURCES.reduce((owned_totals, resource_name) => {
+        owned_totals[resource_name] = 0;
+        return owned_totals;
+    }, {});
+    const donation = RESOURCES.reduce((donation_totals, resource_name) => {
+        donation_totals[resource_name] = 0;
+        return donation_totals;
+    }, {});
     return {
-        white: 0,
-        brown: 0,
-        green: 0,
-        wsmall: 0,
-        black: 0,
-        yellow: 0,
-        blue: 0,
-        wlarge: 0,
-        ultratech: 0,
-        ships: 0,
-        vp: 0
+        owned: owned,
+        donations: donation,
     };
+
+}
+
+function sum_owned_donations(total) {
+    const sum = RESOURCES.reduce((totals, resource_name) => {
+        const owned = total["owned"]?.[resource_name];
+        const donation = total["donations"]?.[resource_name];
+        totals[resource_name] = (owned ? owned : 0) + (donation ? donation : 0);
+        return totals;
+    }, {});
+    return sum;
 }
 
 function add_totals(t1, t2) {
+    const owned = RESOURCES.reduce((owned_totals, resource_name) => {
+        const t1_resource = t1["owned"]?.[resource_name] ? t1["owned"]?.[resource_name] : 0;
+        const t2_resource = t2["owned"]?.[resource_name] ? t2["owned"]?.[resource_name] : 0;
+        owned_totals[resource_name] = t1_resource + t2_resource;
+        return owned_totals;
+    }, {});
+    const donation = RESOURCES.reduce((donation_totals, resource_name) => {
+        const t1_resource = t1["donations"]?.[resource_name] ? t1["donations"]?.[resource_name] : 0;
+        const t2_resource = t2["donations"]?.[resource_name] ? t2["donations"]?.[resource_name] : 0;
+        donation_totals[resource_name] = t1_resource + t2_resource;
+        return donation_totals;
+    }, {});
     return {
-        white: (t1.white ? t1.white : 0) + (t2.white ? t2.white : 0),
-        brown: (t1.brown ? t1.brown : 0) + (t2.brown ? t2.brown : 0),
-        green: (t1.green ? t1.green : 0) + (t2.green ? t2.green : 0),
-        wsmall: (t1.wsmall ? t1.wsmall : 0) + (t2.wsmall ? t2.wsmall : 0),
-        black: (t1.black ? t1.black : 0) + (t2.black ? t2.black : 0),
-        yellow: (t1.yellow ? t1.yellow : 0) + (t2.yellow ? t2.yellow : 0),
-        blue: (t1.blue ? t1.blue : 0) + (t2.blue ? t2.blue : 0),
-        wlarge: (t1.wlarge ? t1.wlarge : 0) + (t2.wlarge ? t2.wlarge : 0),
-        ultratech: (t1.ultratech ? t1.ultratech : 0) + (t2.ultratech ? t2.ultratech : 0),
-        ships: (t1.ships ? t1.ships : 0) + (t2.ships ? t2.ships : 0),
-        vp: (t1.vp ? t1.vp : 0) + (t2.vp ? t2.vp : 0)
+        owned: owned,
+        donations: donation,
     };
 }
 
 function sub_totals(t1, t2) {
+    const owned = RESOURCES.reduce((owned_totals, resource_name) => {
+        const t1_resource = t1["owned"][resource_name] ? t1["owned"][resource_name] : 0;
+        const t2_resource = t2["owned"][resource_name] ? t2["owned"][resource_name] : 0;
+        owned_totals[resource_name] = t1_resource - t2_resource;
+        return owned_totals;
+    }, {});
+    const donation = RESOURCES.reduce((donation_totals, resource_name) => {
+        const t1_resource = t1["donations"][resource_name] ? t1["donations"][resource_name] : 0;
+        const t2_resource = t2["donations"][resource_name] ? t2["donations"][resource_name] : 0;
+        donation_totals[resource_name] = t1_resource - t2_resource;
+        return donation_totals;
+    }, {});
     return {
-        white: (t1.white ? t1.white : 0) - (t2.white ? t2.white : 0),
-        brown: (t1.brown ? t1.brown : 0) - (t2.brown ? t2.brown : 0),
-        green: (t1.green ? t1.green : 0) - (t2.green ? t2.green : 0),
-        wsmall: (t1.wsmall ? t1.wsmall : 0) - (t2.wsmall ? t2.wsmall : 0),
-        black: (t1.black ? t1.black : 0) - (t2.black ? t2.black : 0),
-        yellow: (t1.yellow ? t1.yellow : 0) - (t2.yellow ? t2.yellow : 0),
-        blue: (t1.blue ? t1.blue : 0) - (t2.blue ? t2.blue : 0),
-        wlarge: (t1.wlarge ? t1.wlarge : 0) - (t2.wlarge ? t2.wlarge : 0),
-        ultratech: (t1.ultratech ? t1.ultratech : 0) - (t2.ultratech ? t2.ultratech : 0),
-        ships: (t1.ships ? t1.ships : 0) - (t2.ships ? t2.ships : 0),
-        vp: (t1.vp ? t1.vp : 0) - (t2.vp ? t2.vp : 0)
+        owned: owned,
+        donations: donation,
     };
 }
 
@@ -226,12 +245,12 @@ function calculate_score(totals) {
 
 function converter_to_totals(data, upgraded) {
     let outputs = upgraded ? data.upgrade_output : data.output;
-    return add_totals(outputs.owned, outputs.donations);
+    return outputs;
 }
 
 function converter_inputs_to_totals(data, upgraded) {
     let inputs = upgraded ? data.upgrade_input : data.input;
-    return add_totals(inputs.owned, inputs.donations);
+    return inputs;
 }
 
 function generate_card_totals() {
@@ -249,7 +268,7 @@ function generate_card_totals() {
 }
 
 function count_card_inputs() {
-    let totals = {}
+    let totals = empty_totals();
     for (let [faction_id, cards] of Object.entries(active_cards)) {
         for (let [card_id, card] of Object.entries(cards)) {
             for (let converter of card.converters) {
@@ -274,7 +293,20 @@ function update_score() {
     let inputs = count_card_inputs();
     let net = sub_totals(total, inputs);
 
-    totals_holder.innerHTML = `<table class="table text-center">${format_total_tr(cards, "Gain:")}${format_total_tr(net, "Net:")}</table>`;
+    totals_holder.innerHTML = `
+    <h4>Gain:</h4>
+    <div class="row">
+        ${format_total_tr(cards.owned, "Owned:")}
+        ${format_total_tr(cards.donations, "Donations:")}
+        ${format_total_tr(sum_owned_donations(cards), "Total:")}
+    </div>
+    <hr>
+    <h4>Net:</h4>
+    <div class="row">
+        ${format_total_tr(net.owned, "Owned:")}
+        ${format_total_tr(net.donations, "Donations:")}
+        ${format_total_tr(sum_owned_donations(net), "Total:")}
+    </div>`;
 }
 /* End calculations */
 
@@ -298,14 +330,18 @@ function format_total_tr(total, header_text) {
         const count = total[resource_name];
         const color_class = count < 0 ? "text-danger" : count > 0 ? "text-success" : "";
         return `
-        <td>
+        <div class="col-sm">
         <span class="${color_class}">${count}</span>
         <img class="centered ${classname}" src="${filename}" alt="${classname}" />
-        </td>`;
+        </div>`;
     }).join("");
 
     return `
-    <tr class="w-50"><th>${header_text}</th>${resources_html}</tr>
+    <div class="col-4 col-md-12">
+        <div class="row">
+            <div class="col-sm-2">${header_text}</div>${resources_html}
+        </div>
+    </div>
     `;
 }
 /* End formatting */
@@ -322,7 +358,7 @@ function create_starting_converters() {
                 continue;
             }
             for (let [card_id, card] of Object.entries(faction_data[key])) {
-                for(let converter of card.converters) {
+                for (let converter of card.converters) {
                     converter.owned = false;
                     converter.running = false;
                 }
@@ -330,7 +366,7 @@ function create_starting_converters() {
         }
     }
     active_cards = {};
-    
+
     if (!all_cards[curr_faction].starting_cards) {
         return;
     }

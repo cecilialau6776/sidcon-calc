@@ -80,15 +80,15 @@ div.resource {
     height: 2.5em;
 }
 label > .large-cube,
-table .large-cube {
+#totals-holder .large-cube {
     height: 2em;
 }
 label > .small-cube,
 label > .ship,
 label > .victory-point,
-table .small-cube,
-table .ship,
-table .victory-point {
+#totals-holder .small-cube,
+#totals-holder .ship,
+#totals-holder .victory-point {
     height: 1.5em;
 }
 img.donation.large-cube {
