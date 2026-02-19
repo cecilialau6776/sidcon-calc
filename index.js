@@ -380,6 +380,7 @@ function create_starting_converters() {
         }
     }
 
+    update_score();
     render_cards();
 }
 
